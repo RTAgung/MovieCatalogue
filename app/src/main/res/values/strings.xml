@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Movie Catalogue</string>
+    <string name="release_on">Release on %s</string>
+    <string name="start_on">Start on %s</string>
+    <string name="start_on_detail">Start on\n%s</string>
+    <string name="tvshow">TV Show</string>
+    <string name="overview">Overview</string>
+    <string name="movie">Movie</string>
+    <string name="release_on_detail">Release on\n%s</string>
+    <string name="share_text">Watch %s now</string>
+</resources>

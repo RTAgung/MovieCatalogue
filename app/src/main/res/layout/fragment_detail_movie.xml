@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.detail.movie.DetailMovieFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_poster"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:scaleType="fitStart"
+            android:src="@drawable/anu"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
+
+        <ImageView
+            android:id="@+id/iv_share"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/side_md"
+            android:layout_marginBottom="@dimen/side_md"
+            android:src="@drawable/ic_share"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_poster"
+            app:layout_constraintEnd_toEndOf="@+id/iv_poster"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/tv_original_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/side_lgr"
+            android:layout_marginTop="@dimen/side_lgr"
+            android:layout_marginEnd="@dimen/side_lgr"
+            android:ellipsize="end"
+            android:gravity="center_horizontal"
+            android:textColor="@color/colorText"
+            android:textSize="@dimen/text_lgr"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_poster"
+            tools:text="Original Title" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/side_lgr"
+            android:layout_marginTop="@dimen/side_sm"
+            android:layout_marginEnd="@dimen/side_lgr"
+            android:ellipsize="end"
+            android:gravity="center_horizontal"
+            android:textColor="@color/colorText"
+            android:textSize="@dimen/text_md"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_original_title"
+            tools:text="Title" />
+
+        <View
+            android:id="@+id/separator_line"
+            android:layout_width="0dp"
+            android:layout_height="1.5dp"
+            android:layout_marginStart="@dimen/side_lgr"
+            android:layout_marginTop="@dimen/side_md"
+            android:layout_marginEnd="@dimen/side_lgr"
+            android:background="@color/colorPrimaryDark"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_title" />
+
+        <TextView
+            android:id="@+id/tv_release"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/side_md"
+            android:layout_marginEnd="@dimen/side_lgr"
+            android:gravity="end"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/text_md"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_movie"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tv_movie"
+            app:layout_constraintTop_toTopOf="@+id/tv_movie"
+            tools:text="@string/release_on_detail" />
+
+        <ImageView
+            android:id="@+id/iv_star"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="@dimen/side_lgr"
+            android:src="@drawable/ic_baseline_stars_24"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_movie"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_movie"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/tv_rate_avg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/side_sm"
+            android:gravity="end"
+            android:textColor="@color/colorTextSecondary"
+            android:textSize="@dimen/text_md"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_star"
+            app:layout_constraintStart_toEndOf="@+id/iv_star"
+            app:layout_constraintTop_toTopOf="@+id/iv_star"
+            tools:text="6.8" />
+
+        <TextView
+            android:id="@+id/tv_movie"
+            android:layout_width="60dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="@dimen/side_lgr"
+            android:background="@drawable/type_background"
+            android:gravity="center"
+            android:text="@string/movie"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/text_lg"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/separator_line" />
+
+        <View
+            android:id="@+id/separator_line2"
+            android:layout_width="0dp"
+            android:layout_height="1.5dp"
+            android:layout_marginStart="@dimen/side_lgr"
+            android:layout_marginTop="@dimen/side_lgr"
+            android:layout_marginEnd="@dimen/side_lgr"
+            android:background="@color/colorPrimaryDark"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_movie" />
+
+        <TextView
+            android:id="@+id/tv_overview_head"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/side_lgr"
+            android:layout_marginTop="@dimen/side_md"
+            android:layout_marginEnd="@dimen/side_lgr"
+            android:gravity="start"
+            android:text="@string/overview"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/separator_line2" />
+
+        <TextView
+            android:id="@+id/tv_overview"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/side_lgr"
+            android:layout_marginTop="@dimen/side_md"
+            android:layout_marginEnd="@dimen/side_lgr"
+            android:gravity="start"
+            android:paddingBottom="@dimen/side_lgr"
+            android:textColor="@color/colorPrimary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_overview_head"
+            tools:text="14 years after making a film about his journey across the USA, Borat risks life and limb when he returns to the United States with his young daughter, and reveals more about the culture, the COVID-19 pandemic, and the political elections." />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
