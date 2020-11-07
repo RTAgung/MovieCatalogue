@@ -20,10 +20,14 @@ import org.mockito.junit.MockitoJUnitRunner
 /*
 Scenario HomeViewModelTest :
     - Memuat Daftar Movie
+        - Memanipulasi data ketika pemanggilan data movie di kelas repository
+        - Memastikan metode di kelas repository terpanggil
         - Memastikan data movie tidak null
         - Memastikan jumlah data movie sesuai dengan yang diharapkan
         - Memastikan data movie pertama sesuai dengan yang diharapkan
     - Memuat Daftar Tv Show
+        - Memanipulasi data ketika pemanggilan data tv show di kelas repository
+        - Memastikan metode di kelas repository terpanggil
         - Memastikan data tv show tidak null
         - Memastikan jumlah data tv show sesuai dengan yang diharapkan
         - Memastikan data tv show pertama sesuai dengan yang diharapkan

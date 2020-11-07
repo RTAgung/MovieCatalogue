@@ -20,6 +20,8 @@ import org.mockito.junit.MockitoJUnitRunner
 /*
 Scenario DetailMovieViewModelTest :
     - Memuat Detail Movie
+        - Memanipulasi data ketika pemanggilan data detail movie di kelas repository
+        - Memastikan metode di kelas repository terpanggil
         - Memastikan data movie tidak null
         - Memastikan data movie sesuai dengan yang diharapkan
  */

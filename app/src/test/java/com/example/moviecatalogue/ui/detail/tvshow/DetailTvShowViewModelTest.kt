@@ -20,6 +20,8 @@ import org.mockito.junit.MockitoJUnitRunner
 /*
 Scenario DetailTvShowViewModelTest :
     - Memuat Detail Tv Show
+        - Memanipulasi data ketika pemanggilan data detail tv show di kelas repository
+        - Memastikan metode di kelas repository terpanggil
         - Memastikan data tv show tidak null
         - Memastikan data tv show sesuai dengan yang diharapkan
  */
