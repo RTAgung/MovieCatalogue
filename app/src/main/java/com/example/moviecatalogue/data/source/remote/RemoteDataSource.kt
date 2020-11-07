@@ -9,7 +9,7 @@ import retrofit2.Response
 
 class RemoteDataSource private constructor(private val apiConfig: MovieApiConfig) {
 
-    fun getTrendingMovie(callback: CallbackApiListener<TrendingMovieResponse>) {
+    fun getTrendingMovie(callback: CallbackApiListener<List<TrendingMovieResultsItem>>) {
         EspressoIdlingResource.increment()
         val client = apiConfig.getApiService()?.getTrendingMovie()
         client?.enqueue(object : Callback<TrendingMovieResponse> {
@@ -17,9 +17,10 @@ class RemoteDataSource private constructor(private val apiConfig: MovieApiConfig
                 call: Call<TrendingMovieResponse>,
                 response: Response<TrendingMovieResponse>
             ) {
-                val items = response.body()
-                if (items != null) callback.onSuccess(items)
-                else callback.onFailed("Items Null")
+                if (response.isSuccessful) {
+                    val listMovies = response.body()?.results
+                    callback.onSuccess(listMovies)
+                } else callback.onFailed("Items Null")
                 EspressoIdlingResource.decrement()
             }
 
@@ -30,7 +31,7 @@ class RemoteDataSource private constructor(private val apiConfig: MovieApiConfig
         })
     }
 
-    fun getTrendingTvShow(callback: CallbackApiListener<TrendingTvShowResponse>) {
+    fun getTrendingTvShow(callback: CallbackApiListener<List<TrendingTvShowResultsItem>>) {
         EspressoIdlingResource.increment()
         val client = apiConfig.getApiService()?.getTrendingTvShow()
         client?.enqueue(object : Callback<TrendingTvShowResponse> {
@@ -38,9 +39,10 @@ class RemoteDataSource private constructor(private val apiConfig: MovieApiConfig
                 call: Call<TrendingTvShowResponse>,
                 response: Response<TrendingTvShowResponse>
             ) {
-                val items = response.body()
-                if (items != null) callback.onSuccess(items)
-                else callback.onFailed("Items Null")
+                if (response.isSuccessful) {
+                    val listTvShows = response.body()?.results
+                    callback.onSuccess(listTvShows)
+                } else callback.onFailed("Items Null")
                 EspressoIdlingResource.decrement()
             }
 

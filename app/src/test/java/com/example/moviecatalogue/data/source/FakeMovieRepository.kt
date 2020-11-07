@@ -11,17 +11,17 @@ import com.example.moviecatalogue.data.source.remote.response.*
 import com.example.moviecatalogue.utils.Helper.getMovieGenres
 import com.example.moviecatalogue.utils.Helper.getTvShowGenres
 
-class MovieRepository private constructor(private val remoteDataSource: RemoteDataSource) :
+class FakeMovieRepository(private val remoteDataSource: RemoteDataSource) :
     MovieDataSource {
 
     override fun getTrendingMovie(): LiveData<List<Movie>> {
         val itemResults = MutableLiveData<List<Movie>>()
-        remoteDataSource.getTrendingMovie(object :
-            CallbackApiListener<List<TrendingMovieResultsItem>> {
-            override fun onSuccess(response: List<TrendingMovieResultsItem>?) {
+        remoteDataSource.getTrendingMovie(object : CallbackApiListener<TrendingMovieResponse> {
+            override fun onSuccess(response: TrendingMovieResponse?) {
                 val listMovies = ArrayList<Movie>()
-                if (response != null) {
-                    for (itemResponse in response) {
+                val responseResults = response?.results
+                if (responseResults != null) {
+                    for (itemResponse in responseResults) {
                         val item = Movie(
                             id = itemResponse.id,
                             originalTitle = itemResponse.originalTitle,
@@ -46,12 +46,12 @@ class MovieRepository private constructor(private val remoteDataSource: RemoteDa
 
     override fun getTrendingTvShow(): LiveData<List<TvShow>> {
         val itemResults = MutableLiveData<List<TvShow>>()
-        remoteDataSource.getTrendingTvShow(object :
-            CallbackApiListener<List<TrendingTvShowResultsItem>> {
-            override fun onSuccess(response: List<TrendingTvShowResultsItem>?) {
+        remoteDataSource.getTrendingTvShow(object : CallbackApiListener<TrendingTvShowResponse> {
+            override fun onSuccess(response: TrendingTvShowResponse?) {
                 val listMovies = ArrayList<TvShow>()
-                if (response != null) {
-                    for (itemResponse in response) {
+                val responseResults = response?.results
+                if (responseResults != null) {
+                    for (itemResponse in responseResults) {
                         val item = TvShow(
                             id = itemResponse.id,
                             originalName = itemResponse.originalName,
@@ -133,14 +133,6 @@ class MovieRepository private constructor(private val remoteDataSource: RemoteDa
     }
 
     companion object {
-        val TAG = MovieRepository::class.simpleName
-
-        @Volatile
-        private var instance: MovieRepository? = null
-
-        fun getInstance(remoteData: RemoteDataSource): MovieRepository =
-            instance ?: synchronized(this) {
-                instance ?: MovieRepository(remoteData)
-            }
+        val TAG = FakeMovieRepository::class.simpleName
     }
 }
