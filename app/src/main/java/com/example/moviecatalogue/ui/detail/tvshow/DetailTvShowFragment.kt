@@ -14,10 +14,13 @@ import com.example.moviecatalogue.R
 import com.example.moviecatalogue.data.TvShow
 import com.example.moviecatalogue.ui.detail.DetailActivity
 import com.example.moviecatalogue.utils.ConstantValue
+import com.example.moviecatalogue.utils.Helper.genresFormatting
+import com.example.moviecatalogue.viewmodel.ViewModelFactory
 import kotlinx.android.synthetic.main.fragment_detail_tv_show.*
 
 class DetailTvShowFragment : Fragment() {
     private lateinit var progress: ProgressBar
+    private lateinit var id: String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,21 +37,21 @@ class DetailTvShowFragment : Fragment() {
                 (context as DetailActivity).findViewById(R.id.progress_bar_detail)
             progress.visibility = View.VISIBLE
 
-            var id: String? = null
             if (arguments != null)
-                id = arguments?.getString(DetailActivity.EXTRA_ID)
+                id = arguments?.getString(DetailActivity.EXTRA_ID).toString()
 
+            val factory = ViewModelFactory.getInstance()
             val viewModel = ViewModelProvider(
                 this,
-                ViewModelProvider.NewInstanceFactory()
+                factory
             )[DetailTvShowViewModel::class.java]
 
-            if (id != null)
-                viewModel.setTvShowId(id)
+            viewModel.setTvShowId(id)
 
-            val tvShow = viewModel.getTvShow()
-
-            populateTvShow(tvShow)
+            viewModel.getTvShow().observe(this, { tvShow ->
+                progress.visibility = View.GONE
+                populateTvShow(tvShow)
+            })
         }
     }
 
@@ -56,8 +59,12 @@ class DetailTvShowFragment : Fragment() {
         if (tvShow != null) {
             tv_original_title.text = tvShow.originalName
             tv_title.text = tvShow.name
-            tv_rate_avg.text = tvShow.voteAverage
+            tv_rate_avg.text = tvShow.voteAverage.toString()
+            tv_rate_count.text = tvShow.voteCount.toString()
             tv_release.text = resources.getString(R.string.start_on_detail, tvShow.firstAirDate)
+            tv_episodes.text = resources.getString(R.string.episodes, tvShow.numberOfEpisodes)
+            tv_seasons.text = resources.getString(R.string.seasons, tvShow.numberOfSeasons)
+            tv_genres.text = tvShow.genres?.let { genresFormatting(it) }
             tv_overview.text = tvShow.overview
 
             context?.let {
@@ -74,7 +81,6 @@ class DetailTvShowFragment : Fragment() {
                 onShareClicked(tvShow.originalName)
             }
         }
-        progress.visibility = View.GONE
     }
 
     private fun onShareClicked(title: String?) {

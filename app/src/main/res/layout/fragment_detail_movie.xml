@@ -175,7 +175,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_runtime"
-            tools:text="asd a skdja hslask dja skdjahs culture, the COVID-19 pandemic, and the political elections." />
+            tools:text="Borat risks life and limb when he returns to the United States with his young daughter," />
 
         <TextView
             android:id="@+id/tv_genres"

@@ -15,10 +15,14 @@ import com.example.moviecatalogue.data.Movie
 import com.example.moviecatalogue.ui.detail.DetailActivity
 import com.example.moviecatalogue.ui.detail.DetailActivity.Companion.EXTRA_ID
 import com.example.moviecatalogue.utils.ConstantValue.IMAGE_URL
+import com.example.moviecatalogue.utils.Helper.genresFormatting
+import com.example.moviecatalogue.utils.Helper.runtimeFormatting
+import com.example.moviecatalogue.viewmodel.ViewModelFactory
 import kotlinx.android.synthetic.main.fragment_detail_movie.*
 
 class DetailMovieFragment : Fragment() {
     private lateinit var progress: ProgressBar
+    private lateinit var id: String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,21 +39,21 @@ class DetailMovieFragment : Fragment() {
                 (context as DetailActivity).findViewById(R.id.progress_bar_detail)
             progress.visibility = View.VISIBLE
 
-            var id: String? = null
             if (arguments != null)
-                id = arguments?.getString(EXTRA_ID)
+                id = arguments?.getString(EXTRA_ID).toString()
 
+            val factory = ViewModelFactory.getInstance()
             val viewModel = ViewModelProvider(
                 this,
-                ViewModelProvider.NewInstanceFactory()
+                factory
             )[DetailMovieViewModel::class.java]
 
-            if (id != null)
-                viewModel.setMovieId(id)
+            viewModel.setMovieId(id)
 
-            val movie = viewModel.getMovie()
-
-            populateMovie(movie)
+            viewModel.getMovie().observe(this, { movie ->
+                progress.visibility = View.GONE
+                populateMovie(movie)
+            })
         }
     }
 
@@ -57,8 +61,12 @@ class DetailMovieFragment : Fragment() {
         if (movie != null) {
             tv_original_title.text = movie.originalTitle
             tv_title.text = movie.title
-            tv_rate_avg.text = movie.voteAverage
+            tv_rate_avg.text = movie.voteAverage.toString()
+            tv_rate_count.text = movie.voteCount.toString()
             tv_release.text = resources.getString(R.string.release_on_detail, movie.releaseDate)
+            tv_runtime.text = movie.runtime?.let { runtimeFormatting(it) }
+            tv_tagline.text = movie.tagline
+            tv_genres.text = movie.genres?.let { genresFormatting(it) }
             tv_overview.text = movie.overview
 
             context?.let {
@@ -75,7 +83,6 @@ class DetailMovieFragment : Fragment() {
                 onShareClicked(movie.originalTitle)
             }
         }
-        progress.visibility = View.GONE
     }
 
     private fun onShareClicked(title: String?) {

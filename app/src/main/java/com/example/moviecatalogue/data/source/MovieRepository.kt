@@ -8,6 +8,8 @@ import com.example.moviecatalogue.data.TvShow
 import com.example.moviecatalogue.data.source.remote.CallbackApiListener
 import com.example.moviecatalogue.data.source.remote.RemoteDataSource
 import com.example.moviecatalogue.data.source.remote.response.*
+import com.example.moviecatalogue.utils.Helper.getMovieGenres
+import com.example.moviecatalogue.utils.Helper.getTvShowGenres
 
 class MovieRepository private constructor(private val remoteDataSource: RemoteDataSource) :
     MovieDataSource {
@@ -128,22 +130,6 @@ class MovieRepository private constructor(private val remoteDataSource: RemoteDa
             }
         })
         return itemResult
-    }
-
-    private fun getMovieGenres(responseGenre: List<MovieGenresItem>): List<String> {
-        val listGenres = ArrayList<String>()
-        for (genre in responseGenre) {
-            listGenres.add(genre.name)
-        }
-        return listGenres
-    }
-
-    private fun getTvShowGenres(responseGenre: List<TvShowGenresItem>): List<String> {
-        val listGenres = ArrayList<String>()
-        for (genre in responseGenre) {
-            listGenres.add(genre.name)
-        }
-        return listGenres
     }
 
     companion object {
