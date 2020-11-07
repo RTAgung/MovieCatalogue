@@ -10,7 +10,8 @@ import com.bumptech.glide.request.RequestOptions
 import com.example.moviecatalogue.R
 import com.example.moviecatalogue.data.TvShow
 import com.example.moviecatalogue.ui.detail.DetailActivity
-import com.example.moviecatalogue.utils.ConstantValue
+import com.example.moviecatalogue.ui.detail.DetailActivity.Companion.TV_SHOW_DESTINATION
+import com.example.moviecatalogue.utils.ConstantValue.IMAGE_URL
 import kotlinx.android.synthetic.main.items_film.view.*
 
 class TvShowAdapter : RecyclerView.Adapter<TvShowAdapter.TvShowViewHolder>() {
@@ -24,21 +25,23 @@ class TvShowAdapter : RecyclerView.Adapter<TvShowAdapter.TvShowViewHolder>() {
     class TvShowViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(tvShow: TvShow) {
             with(itemView) {
-                tv_item_title.text = tvShow.originalName
+                tv_item_original_title.text = tvShow.originalName
+                tv_item_title.text = tvShow.name
                 tv_item_release.text =
                     resources.getString(R.string.start_on, tvShow.firstAirDate)
-                tv_item_rate.text = tvShow.voteAverage
+                tv_item_rate.text = tvShow.voteAverage.toString()
                 Glide.with(context)
-                    .load(ConstantValue.IMAGE_URL + tvShow.posterPath)
+                    .load(IMAGE_URL + tvShow.posterPath)
                     .apply {
                         RequestOptions.placeholderOf(R.drawable.ic_error)
                             .error(R.drawable.ic_error)
                     }
                     .into(iv_item_poster)
+
                 setOnClickListener {
                     val intent = Intent(context, DetailActivity::class.java).apply {
                         putExtra(DetailActivity.EXTRA_ID, tvShow.id)
-                        putExtra(DetailActivity.EXTRA_DESTINATION, "tvshow")
+                        putExtra(DetailActivity.EXTRA_DESTINATION, TV_SHOW_DESTINATION)
                     }
                     context.startActivity(intent)
                 }

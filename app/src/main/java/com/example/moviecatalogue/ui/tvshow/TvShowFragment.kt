@@ -8,7 +8,9 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.moviecatalogue.R
+import com.example.moviecatalogue.data.TvShow
 import com.example.moviecatalogue.ui.home.HomeViewModel
+import com.example.moviecatalogue.viewmodel.ViewModelFactory
 import kotlinx.android.synthetic.main.fragment_tv_show.*
 
 class TvShowFragment : Fragment() {
@@ -22,23 +24,29 @@ class TvShowFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        progress_bar_tvshow.visibility = View.VISIBLE
         if (activity != null) {
+            progress_bar_tvshow.visibility = View.VISIBLE
+
+            val factory = ViewModelFactory.getInstance()
             val viewModel = ViewModelProvider(
                 requireActivity(),
-                ViewModelProvider.NewInstanceFactory()
+                factory
             )[HomeViewModel::class.java]
-            val listTvShows = viewModel.getTrendingTvShow()
 
             val tvShowAdapter = TvShowAdapter()
-            tvShowAdapter.listTvShows = listTvShows
+
+            viewModel.getTrendingTvShow().observe(this, { tvShows ->
+                progress_bar_tvshow.visibility = View.GONE
+                val listTvShows = ArrayList<TvShow>()
+                listTvShows.addAll(tvShows)
+                tvShowAdapter.listTvShows = listTvShows
+            })
 
             with(rv_tvshow) {
                 layoutManager = LinearLayoutManager(context)
                 setHasFixedSize(true)
                 adapter = tvShowAdapter
             }
-            progress_bar_tvshow.visibility = View.GONE
         }
     }
 }

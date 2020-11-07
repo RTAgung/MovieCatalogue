@@ -8,7 +8,9 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.moviecatalogue.R
+import com.example.moviecatalogue.data.Movie
 import com.example.moviecatalogue.ui.home.HomeViewModel
+import com.example.moviecatalogue.viewmodel.ViewModelFactory
 import kotlinx.android.synthetic.main.fragment_movie.*
 
 class MovieFragment : Fragment() {
@@ -22,16 +24,23 @@ class MovieFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        progress_bar_movie.visibility = View.VISIBLE
         if (activity != null) {
+            progress_bar_movie.visibility = View.VISIBLE
+
+            val factory = ViewModelFactory.getInstance()
             val viewModel = ViewModelProvider(
                 requireActivity(),
-                ViewModelProvider.NewInstanceFactory()
+                factory
             )[HomeViewModel::class.java]
-            val listMovies = viewModel.getTrendingMovie()
 
             val movieAdapter = MovieAdapter()
-            movieAdapter.listMovies = listMovies
+
+            viewModel.getTrendingMovie().observe(this, { movies ->
+                progress_bar_movie.visibility = View.GONE
+                val listMovies = ArrayList<Movie>()
+                listMovies.addAll(movies)
+                movieAdapter.listMovies = listMovies
+            })
 
             with(rv_movie) {
                 layoutManager = LinearLayoutManager(context)
@@ -39,6 +48,5 @@ class MovieFragment : Fragment() {
                 adapter = movieAdapter
             }
         }
-        progress_bar_movie.visibility = View.GONE
     }
 }

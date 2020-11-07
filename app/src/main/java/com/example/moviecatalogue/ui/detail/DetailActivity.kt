@@ -24,9 +24,9 @@ class DetailActivity : AppCompatActivity() {
             }
         }
 
-        if (destination == "movie") {
+        if (destination == MOVIE_DESTINATION) {
             showFragment(id, DetailMovieFragment())
-        } else if (destination == "tvshow") {
+        } else if (destination == TV_SHOW_DESTINATION) {
             showFragment(id, DetailTvShowFragment())
         }
     }
@@ -57,5 +57,7 @@ class DetailActivity : AppCompatActivity() {
     companion object {
         const val EXTRA_ID = "extra_id"
         const val EXTRA_DESTINATION = "extra_destination"
+        const val MOVIE_DESTINATION = "movie_destination"
+        const val TV_SHOW_DESTINATION = "tv_show_destination"
     }
 }
