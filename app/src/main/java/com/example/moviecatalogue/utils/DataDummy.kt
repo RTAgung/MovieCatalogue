@@ -135,9 +135,9 @@ object DataDummy {
     }
 
     fun generateDummyTvShow(): ArrayList<TvShow> {
-        val tvshows = ArrayList<TvShow>()
+        val tvShows = ArrayList<TvShow>()
 
-        tvshows.add(
+        tvShows.add(
             TvShow(
                 backdropPath = "/iU955nBcsc5Zr5e31eWU2xKVqHk.jpg",
                 firstAirDate = "2020-10-23",
@@ -149,7 +149,7 @@ object DataDummy {
                 voteAverage = 7.3
             )
         )
-        tvshows.add(
+        tvShows.add(
             TvShow(
                 originalName = "The Haunting of Bly Manor",
                 id = "109958",
@@ -161,7 +161,7 @@ object DataDummy {
                 overview = "After an au pair’s tragic death, Henry Wingrave hires a young American nanny to care for his orphaned niece and nephew who reside at Bly Manor with the estate’s chef Owen, groundskeeper Jamie and housekeeper, Mrs. Grose. But all is not as it seems at the manor, and centuries of dark secrets of love and loss are waiting to be unearthed in this chilling gothic romance. At Bly Manor, dead doesn’t mean gone."
             )
         )
-        tvshows.add(
+        tvShows.add(
             TvShow(
                 originalName = "The Queen's Gambit",
                 id = "87739",
@@ -173,7 +173,7 @@ object DataDummy {
                 overview = "In a Kentucky orphanage in the 1950s, a young girl discovers an astonishing talent for chess while struggling with addiction."
             )
         )
-        tvshows.add(
+        tvShows.add(
             TvShow(
                 originalName = "The Boys",
                 id = "76479",
@@ -185,7 +185,7 @@ object DataDummy {
                 overview = "A group of vigilantes known informally as “The Boys” set out to take down corrupt superheroes with no more than blue-collar grit and a willingness to fight dirty."
             )
         )
-        tvshows.add(
+        tvShows.add(
             TvShow(
                 originalName = "The Walking Dead: World Beyond",
                 id = "94305",
@@ -197,7 +197,7 @@ object DataDummy {
                 overview = "A heroic group of teens sheltered from the dangers of the post-apocalyptic world leave the safety of the only home they have ever known and embark on a cross-country journey to find the one man who can possibly save the world."
             )
         )
-        tvshows.add(
+        tvShows.add(
             TvShow(
                 originalName = "Star Trek: Discovery",
                 id = "67198",
@@ -209,7 +209,7 @@ object DataDummy {
                 overview = "Follow the voyages of Starfleet on their missions to discover new worlds and new life forms, and one Starfleet officer who must learn that to truly understand all things alien, you must first understand yourself."
             )
         )
-        tvshows.add(
+        tvShows.add(
             TvShow(
                 originalName = "Fear the Walking Dead",
                 id = "62286",
@@ -221,7 +221,7 @@ object DataDummy {
                 overview = "What did the world look like as it was transforming into the horrifying apocalypse depicted in \"The Walking Dead\"? This spin-off set in Los Angeles, following new characters as they face the beginning of the end of the world, will answer that question."
             )
         )
-        tvshows.add(
+        tvShows.add(
             TvShow(
                 originalName = "Helstrom",
                 id = "88987",
@@ -233,7 +233,7 @@ object DataDummy {
                 overview = "Daimon and Ana Helstrom are the son and daughter of a mysterious and powerful serial killer. The siblings have a complicated dynamic as they track down the terrorizing worst of humanity — each with their attitude and skills."
             )
         )
-        tvshows.add(
+        tvShows.add(
             TvShow(
                 originalName = "The Undoing",
                 id = "83851",
@@ -245,7 +245,7 @@ object DataDummy {
                 overview = "Grace Fraser is a successful therapist on the brink of publishing her first book with a devoted husband and young son who attends an elite private school in New York City. Weeks before her book is published, a chasm opens in her life: a violent death, a missing husband, and, in the place of a man Grace thought she knew, only a chain of terrible revelations."
             )
         )
-        tvshows.add(
+        tvShows.add(
             TvShow(
                 originalName = "La Révolution",
                 id = "99807",
@@ -258,7 +258,7 @@ object DataDummy {
             )
         )
 
-        return tvshows
+        return tvShows
     }
 
     fun generateRemoteDummyMovie(): List<TrendingMovieResultsItem> {
@@ -399,9 +399,9 @@ object DataDummy {
     }
 
     fun generateRemoteDummyTvShow(): List<TrendingTvShowResultsItem> {
-        val tvshows = ArrayList<TrendingTvShowResultsItem>()
+        val tvShows = ArrayList<TrendingTvShowResultsItem>()
 
-        tvshows.add(
+        tvShows.add(
             TrendingTvShowResultsItem(
                 backdropPath = "/iU955nBcsc5Zr5e31eWU2xKVqHk.jpg",
                 firstAirDate = "2020-10-23",
@@ -414,7 +414,7 @@ object DataDummy {
                 voteAverage = 7.3
             )
         )
-        tvshows.add(
+        tvShows.add(
             TrendingTvShowResultsItem(
                 originalName = "The Haunting of Bly Manor",
                 id = "109958",
@@ -427,7 +427,7 @@ object DataDummy {
                 overview = "After an au pair’s tragic death, Henry Wingrave hires a young American nanny to care for his orphaned niece and nephew who reside at Bly Manor with the estate’s chef Owen, groundskeeper Jamie and housekeeper, Mrs. Grose. But all is not as it seems at the manor, and centuries of dark secrets of love and loss are waiting to be unearthed in this chilling gothic romance. At Bly Manor, dead doesn’t mean gone."
             )
         )
-        tvshows.add(
+        tvShows.add(
             TrendingTvShowResultsItem(
                 originalName = "The Queen's Gambit",
                 id = "87739",
@@ -440,7 +440,7 @@ object DataDummy {
                 overview = "In a Kentucky orphanage in the 1950s, a young girl discovers an astonishing talent for chess while struggling with addiction."
             )
         )
-        tvshows.add(
+        tvShows.add(
             TrendingTvShowResultsItem(
                 originalName = "The Boys",
                 id = "76479",
@@ -453,7 +453,7 @@ object DataDummy {
                 overview = "A group of vigilantes known informally as “The Boys” set out to take down corrupt superheroes with no more than blue-collar grit and a willingness to fight dirty."
             )
         )
-        tvshows.add(
+        tvShows.add(
             TrendingTvShowResultsItem(
                 originalName = "The Walking Dead: World Beyond",
                 id = "94305",
@@ -466,7 +466,7 @@ object DataDummy {
                 overview = "A heroic group of teens sheltered from the dangers of the post-apocalyptic world leave the safety of the only home they have ever known and embark on a cross-country journey to find the one man who can possibly save the world."
             )
         )
-        tvshows.add(
+        tvShows.add(
             TrendingTvShowResultsItem(
                 originalName = "Star Trek: Discovery",
                 id = "67198",
@@ -479,7 +479,7 @@ object DataDummy {
                 overview = "Follow the voyages of Starfleet on their missions to discover new worlds and new life forms, and one Starfleet officer who must learn that to truly understand all things alien, you must first understand yourself."
             )
         )
-        tvshows.add(
+        tvShows.add(
             TrendingTvShowResultsItem(
                 originalName = "Fear the Walking Dead",
                 id = "62286",
@@ -492,7 +492,7 @@ object DataDummy {
                 overview = "What did the world look like as it was transforming into the horrifying apocalypse depicted in \"The Walking Dead\"? This spin-off set in Los Angeles, following new characters as they face the beginning of the end of the world, will answer that question."
             )
         )
-        tvshows.add(
+        tvShows.add(
             TrendingTvShowResultsItem(
                 originalName = "Helstrom",
                 id = "88987",
@@ -505,7 +505,7 @@ object DataDummy {
                 overview = "Daimon and Ana Helstrom are the son and daughter of a mysterious and powerful serial killer. The siblings have a complicated dynamic as they track down the terrorizing worst of humanity — each with their attitude and skills."
             )
         )
-        tvshows.add(
+        tvShows.add(
             TrendingTvShowResultsItem(
                 originalName = "The Undoing",
                 id = "83851",
@@ -518,7 +518,7 @@ object DataDummy {
                 overview = "Grace Fraser is a successful therapist on the brink of publishing her first book with a devoted husband and young son who attends an elite private school in New York City. Weeks before her book is published, a chasm opens in her life: a violent death, a missing husband, and, in the place of a man Grace thought she knew, only a chain of terrible revelations."
             )
         )
-        tvshows.add(
+        tvShows.add(
             TrendingTvShowResultsItem(
                 originalName = "La Révolution",
                 id = "99807",
@@ -532,6 +532,6 @@ object DataDummy {
             )
         )
 
-        return tvshows
+        return tvShows
     }
 }
