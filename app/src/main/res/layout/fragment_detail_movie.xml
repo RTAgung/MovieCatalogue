@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
             android:scaleType="fitStart"
-            android:src="@drawable/anu"
+            android:src="@drawable/image_background"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -69,7 +69,7 @@
         <View
             android:id="@+id/separator_line"
             android:layout_width="0dp"
-            android:layout_height="1.5dp"
+            android:layout_height="1dp"
             android:layout_marginStart="@dimen/side_lgr"
             android:layout_marginTop="@dimen/side_md"
             android:layout_marginEnd="@dimen/side_lgr"
@@ -196,7 +196,7 @@
         <View
             android:id="@+id/separator_line2"
             android:layout_width="0dp"
-            android:layout_height="1.5dp"
+            android:layout_height="1dp"
             android:layout_marginStart="@dimen/side_lgr"
             android:layout_marginTop="@dimen/side_md"
             android:layout_marginEnd="@dimen/side_lgr"

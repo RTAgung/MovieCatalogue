@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
             android:scaleType="fitStart"
-            android:src="@drawable/anu"
+            android:src="@drawable/image_background"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -69,7 +69,7 @@
         <View
             android:id="@+id/separator_line"
             android:layout_width="0dp"
-            android:layout_height="1.5dp"
+            android:layout_height="1dp"
             android:layout_marginStart="@dimen/side_lgr"
             android:layout_marginTop="@dimen/side_md"
             android:layout_marginEnd="@dimen/side_lgr"
@@ -149,7 +149,7 @@
 
         <View
             android:id="@+id/separator_line2"
-            android:layout_width="1.5dp"
+            android:layout_width="1dp"
             android:layout_height="24dp"
             android:layout_marginStart="@dimen/side_lgr"
             android:layout_marginTop="@dimen/side_lgr"
@@ -165,7 +165,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/side_sm"
             android:gravity="end"
-            android:text="@string/episodes"
+            tools:text="8 episodes"
             android:textColor="@color/colorPrimary"
             app:layout_constraintBottom_toBottomOf="@+id/separator_line2"
             app:layout_constraintEnd_toStartOf="@+id/separator_line2"
@@ -177,7 +177,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/side_sm"
             android:gravity="start"
-            android:text="@string/seasons"
+            tools:text="2 seasons"
             android:textColor="@color/colorPrimary"
             app:layout_constraintBottom_toBottomOf="@+id/separator_line2"
             app:layout_constraintStart_toEndOf="@+id/separator_line2"
@@ -202,7 +202,7 @@
         <View
             android:id="@+id/separator_line3"
             android:layout_width="0dp"
-            android:layout_height="1.5dp"
+            android:layout_height="1dp"
             android:layout_marginStart="@dimen/side_lgr"
             android:layout_marginTop="@dimen/side_md"
             android:layout_marginEnd="@dimen/side_lgr"

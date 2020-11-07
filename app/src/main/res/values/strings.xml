@@ -8,6 +8,12 @@
     <string name="movie">Movie</string>
     <string name="release_on_detail">Release on\n%s</string>
     <string name="share_text">Watch %s now</string>
-    <string name="episodes">%d episodes</string>
-    <string name="seasons">%d seasons</string>
+    <plurals name="episodes">
+        <item quantity="one">%d episode</item>
+        <item quantity="other">%d episodes</item>
+    </plurals>
+    <plurals name="seasons">
+        <item quantity="one">%d season</item>
+        <item quantity="other">%d seasons</item>
+    </plurals>
 </resources>

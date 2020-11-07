@@ -60,10 +60,13 @@ class DetailTvShowFragment : Fragment() {
             tv_original_title.text = tvShow.originalName
             tv_title.text = tvShow.name
             tv_rate_avg.text = tvShow.voteAverage.toString()
-            tv_rate_count.text = tvShow.voteCount.toString()
+            val rateCount = "(${tvShow.voteCount}) "
+            tv_rate_count.text = rateCount
             tv_release.text = resources.getString(R.string.start_on_detail, tvShow.firstAirDate)
-            tv_episodes.text = resources.getString(R.string.episodes, tvShow.numberOfEpisodes)
-            tv_seasons.text = resources.getString(R.string.seasons, tvShow.numberOfSeasons)
+            tv_episodes.text =
+                tvShow.numberOfEpisodes?.let { resources.getQuantityString(R.plurals.episodes, it, it) }
+            tv_seasons.text =
+                tvShow.numberOfSeasons?.let { resources.getQuantityString(R.plurals.seasons, it, it) }
             tv_genres.text = tvShow.genres?.let { genresFormatting(it) }
             tv_overview.text = tvShow.overview
 

@@ -58,8 +58,8 @@ class HomeActivityTest {
     @Test
     fun loadTvShows() {
         onView(withText("TV SHOW")).perform(click())
-        onView(withId(R.id.rv_tvshow)).check(matches(isDisplayed()))
-        onView(withId(R.id.rv_tvshow)).perform(
+        onView(withId(R.id.rv_tv_show)).check(matches(isDisplayed()))
+        onView(withId(R.id.rv_tv_show)).perform(
             RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(
                 dummyTvShows.size
             )
@@ -94,7 +94,7 @@ class HomeActivityTest {
     @Test
     fun loadDetailTvShow() {
         onView(withText("TV SHOW")).perform(click())
-        onView(withId(R.id.rv_tvshow)).perform(
+        onView(withId(R.id.rv_tv_show)).perform(
             RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(
                 0,
                 click()

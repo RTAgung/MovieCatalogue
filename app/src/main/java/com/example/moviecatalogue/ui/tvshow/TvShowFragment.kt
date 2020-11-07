@@ -25,7 +25,7 @@ class TvShowFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         if (activity != null) {
-            progress_bar_tvshow.visibility = View.VISIBLE
+            progress_bar_tv_show.visibility = View.VISIBLE
 
             val factory = ViewModelFactory.getInstance()
             val viewModel = ViewModelProvider(
@@ -36,13 +36,13 @@ class TvShowFragment : Fragment() {
             val tvShowAdapter = TvShowAdapter()
 
             viewModel.getTrendingTvShow().observe(this, { tvShows ->
-                progress_bar_tvshow.visibility = View.GONE
+                progress_bar_tv_show.visibility = View.GONE
                 val listTvShows = ArrayList<TvShow>()
                 listTvShows.addAll(tvShows)
                 tvShowAdapter.listTvShows = listTvShows
             })
 
-            with(rv_tvshow) {
+            with(rv_tv_show) {
                 layoutManager = LinearLayoutManager(context)
                 setHasFixedSize(true)
                 adapter = tvShowAdapter

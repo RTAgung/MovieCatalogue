@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <item
+        tools:height="281px"
+        tools:targetApi="m"
+        tools:width="500px"
+        android:height="281px"
+        android:width="500px">
+        <shape>
+            <solid android:color="@color/colorImage" />
+        </shape>
+    </item>
+</layer-list>

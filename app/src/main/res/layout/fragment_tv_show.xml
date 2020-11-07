@@ -7,14 +7,14 @@
     tools:context=".ui.tvshow.TvShowFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_tvshow"
+        android:id="@+id/rv_tv_show"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:listitem="@layout/items_film" />
 
     <ProgressBar
-        android:id="@+id/progress_bar_tvshow"
+        android:id="@+id/progress_bar_tv_show"
         style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

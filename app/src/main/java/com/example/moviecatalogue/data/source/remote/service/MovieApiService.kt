@@ -10,15 +10,15 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 
 interface MovieApiService {
-    @GET("/trending/movie/week?api_key=$API_KEY")
+    @GET("/3/trending/movie/week?api_key=$API_KEY")
     fun getTrendingMovie(): Call<TrendingMovieResponse>
 
-    @GET("/trending/tv/week?api_key=$API_KEY")
+    @GET("/3/trending/tv/week?api_key=$API_KEY")
     fun getTrendingTvShow(): Call<TrendingTvShowResponse>
 
-    @GET("/movie/{movie_id}?api_key=$API_KEY")
+    @GET("/3/movie/{movie_id}?api_key=$API_KEY")
     fun getMovie(@Path("movie_id") movieId: String): Call<MovieResponse>
 
-    @GET("/tv/{tv_id}?api_key=$API_KEY")
+    @GET("/3/tv/{tv_id}?api_key=$API_KEY")
     fun getTvShow(@Path("tv_id") tvShowId: String): Call<TvShowResponse>
 }

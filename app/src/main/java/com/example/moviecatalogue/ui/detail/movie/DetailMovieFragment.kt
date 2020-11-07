@@ -62,7 +62,8 @@ class DetailMovieFragment : Fragment() {
             tv_original_title.text = movie.originalTitle
             tv_title.text = movie.title
             tv_rate_avg.text = movie.voteAverage.toString()
-            tv_rate_count.text = movie.voteCount.toString()
+            val rateCount = "(${movie.voteCount}) "
+            tv_rate_count.text = rateCount
             tv_release.text = resources.getString(R.string.release_on_detail, movie.releaseDate)
             tv_runtime.text = movie.runtime?.let { runtimeFormatting(it) }
             tv_tagline.text = movie.tagline

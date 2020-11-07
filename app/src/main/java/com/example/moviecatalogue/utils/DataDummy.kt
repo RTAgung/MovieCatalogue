@@ -11,7 +11,7 @@ object DataDummy {
         movies.add(
             Movie(
                 id = "740985",
-                voteAverage = "6.8",
+                voteAverage = 6.8,
                 title = "Borat Subsequent Moviefilm",
                 releaseDate = "2020-10-23",
                 originalTitle = "Borat Subsequent Moviefilm",
@@ -23,7 +23,7 @@ object DataDummy {
         movies.add(
             Movie(
                 id = "531219",
-                voteAverage = "7.2",
+                voteAverage = 7.2,
                 title = "Roald Dahl's The Witches",
                 releaseDate = "2020-10-26",
                 originalTitle = "Roald Dahl's The Witches",
@@ -35,7 +35,7 @@ object DataDummy {
         movies.add(
             Movie(
                 id = "105",
-                voteAverage = "8.3",
+                voteAverage = 8.3,
                 title = "Back to the Future",
                 releaseDate = "1985-07-03",
                 originalTitle = "Back to the Future",
@@ -47,7 +47,7 @@ object DataDummy {
         movies.add(
             Movie(
                 id = "590223",
-                voteAverage = "7.6",
+                voteAverage = 7.6,
                 title = "Love and Monsters",
                 releaseDate = "2020-10-16",
                 originalTitle = "Love and Monsters",
@@ -59,7 +59,7 @@ object DataDummy {
         movies.add(
             Movie(
                 id = "625568",
-                voteAverage = "6.4",
+                voteAverage = 6.4,
                 title = "Unhinged",
                 releaseDate = "2020-07-02",
                 originalTitle = "Unhinged",
@@ -71,7 +71,7 @@ object DataDummy {
         movies.add(
             Movie(
                 id = "560050",
-                voteAverage = "7.9",
+                voteAverage = 7.9,
                 title = "Over the Moon",
                 releaseDate = "2020-10-16",
                 originalTitle = "Over the Moon",
@@ -83,7 +83,7 @@ object DataDummy {
         movies.add(
             Movie(
                 id = "556984",
-                voteAverage = "7.8",
+                voteAverage = 7.8,
                 title = "The Trial of the Chicago 7",
                 releaseDate = "2020-09-25",
                 originalTitle = "The Trial of the Chicago 7",
@@ -95,7 +95,7 @@ object DataDummy {
         movies.add(
             Movie(
                 id = "505379",
-                voteAverage = "6.3",
+                voteAverage = 6.3,
                 title = "Rebecca",
                 releaseDate = "2020-10-16",
                 originalTitle = "Rebecca",
@@ -107,7 +107,7 @@ object DataDummy {
         movies.add(
             Movie(
                 id = "613504",
-                voteAverage = "6.9",
+                voteAverage = 6.9,
                 title = "After We Collided",
                 releaseDate = "2020-09-02",
                 originalTitle = "After We Collided",
@@ -119,7 +119,7 @@ object DataDummy {
         movies.add(
             Movie(
                 id = "575417",
-                voteAverage = "6.5",
+                voteAverage = 6.5,
                 title = "On the Rocks",
                 releaseDate = "2020-10-02",
                 originalTitle = "On the Rocks",
@@ -144,7 +144,7 @@ object DataDummy {
                 originalName = "Barbaren",
                 overview = "Three people's fates are interwoven in the Battle of the Teutoburg Forest in 9 A.D., during which Germanic warriors halt the spread of the Roman Empire.",
                 posterPath = "/trfHliK2hhw2xOJVztHqKylyzrD.jpg",
-                voteAverage = "7.3"
+                voteAverage = 7.3
             )
         )
         tvshows.add(
@@ -152,7 +152,7 @@ object DataDummy {
                 originalName = "The Haunting of Bly Manor",
                 id = "109958",
                 name = "The Haunting of Bly Manor",
-                voteAverage = "7.8",
+                voteAverage = 7.8,
                 firstAirDate = "2020-10-09",
                 posterPath = "/vIXQ8UymmQ7zJEPrKJP3s3fSbhR.jpg",
                 backdropPath = "/isevY1UDcpaAYlYo7IqoSAU9s81.jpg",
@@ -164,7 +164,7 @@ object DataDummy {
                 originalName = "The Queen's Gambit",
                 id = "87739",
                 name = "The Queen's Gambit",
-                voteAverage = "9.2",
+                voteAverage = 9.2,
                 firstAirDate = "2020-10-23",
                 posterPath = "/zU0htwkhNvBQdVSIKB9s6hgVeFK.jpg",
                 backdropPath = "/34OGjFEbHj0E3lE2w0iTUVq0CBz.jpg",
@@ -176,7 +176,7 @@ object DataDummy {
                 originalName = "The Boys",
                 id = "76479",
                 name = "The Boys",
-                voteAverage = "8.4",
+                voteAverage = 8.4,
                 firstAirDate = "2019-07-25",
                 posterPath = "/mY7SeH4HFFxW1hiI6cWuwCRKptN.jpg",
                 backdropPath = "/mGVrXeIjyecj6TKmwPVpHlscEmw.jpg",
@@ -188,7 +188,7 @@ object DataDummy {
                 originalName = "The Walking Dead: World Beyond",
                 id = "94305",
                 name = "The Walking Dead: World Beyond",
-                voteAverage = "7.7",
+                voteAverage = 7.7,
                 firstAirDate = "2020-10-04",
                 posterPath = "/z31GxpVgDsFAF4paZR8PRsiP16D.jpg",
                 backdropPath = "/pLVrN9B750ehwTFdQ6n3HRUERLd.jpg",
@@ -200,7 +200,7 @@ object DataDummy {
                 originalName = "Star Trek: Discovery",
                 id = "67198",
                 name = "Star Trek: Discovery",
-                voteAverage = "7",
+                voteAverage = 7.0,
                 firstAirDate = "2017-09-24",
                 posterPath = "/98RYSYsRNKWgrAAFBn0WfploUG7.jpg",
                 backdropPath = "/p3McpsDNTNmpbkNBKdNxOFZJeKX.jpg",
@@ -212,7 +212,7 @@ object DataDummy {
                 originalName = "Fear the Walking Dead",
                 id = "62286",
                 name = "Fear the Walking Dead",
-                voteAverage = "7.3",
+                voteAverage = 7.3,
                 firstAirDate = "2015-08-23",
                 posterPath = "/wGFUewXPeMErCe2xnCmmLEiHOGh.jpg",
                 backdropPath = "/58PON1OrnBiX6CqEHgeWKVwrCn6.jpg",
@@ -224,7 +224,7 @@ object DataDummy {
                 originalName = "Helstrom",
                 id = "88987",
                 name = "Helstrom",
-                voteAverage = "6.6",
+                voteAverage = 6.6,
                 firstAirDate = "2020-10-16",
                 posterPath = "/8fPIcaRIZgsoBcgA5yAm3GNz61M.jpg",
                 backdropPath = "/qCReQONjNVaW4QFN2V5vCOzPvex.jpg",
@@ -236,7 +236,7 @@ object DataDummy {
                 originalName = "The Undoing",
                 id = "83851",
                 name = "The Undoing",
-                voteAverage = "4",
+                voteAverage = 4.0,
                 firstAirDate = "2020-10-25",
                 posterPath = "/3tDbJxobPN3EI2bBebL6zmusmw5.jpg",
                 backdropPath = "/tJjwEzTglpxoWJXwEbZlKLppMhr.jpg",
@@ -248,7 +248,7 @@ object DataDummy {
                 originalName = "La Révolution",
                 id = "99807",
                 name = "La Révolution",
-                voteAverage = "7.2",
+                voteAverage = 7.2,
                 firstAirDate = "2020-10-16",
                 posterPath = "/7OXN9nUI5sV1AkBViSKeehoePoG.jpg",
                 backdropPath = "/lpRROknTUlvJ8gPgmRUlIoOVCdA.jpg",
