@@ -2,8 +2,7 @@ package com.example.moviecatalogue.utils
 
 import com.example.moviecatalogue.data.Movie
 import com.example.moviecatalogue.data.TvShow
-import com.example.moviecatalogue.data.source.remote.response.TrendingMovieResultsItem
-import com.example.moviecatalogue.data.source.remote.response.TrendingTvShowResultsItem
+import com.example.moviecatalogue.data.source.remote.response.*
 
 object DataDummy {
 
@@ -261,7 +260,7 @@ object DataDummy {
         return tvShows
     }
 
-    fun generateRemoteDummyMovie(): List<TrendingMovieResultsItem> {
+    fun generateRemoteDummyTrendingMovie(): List<TrendingMovieResultsItem> {
         val movies = ArrayList<TrendingMovieResultsItem>()
 
         movies.add(
@@ -398,7 +397,7 @@ object DataDummy {
         return movies
     }
 
-    fun generateRemoteDummyTvShow(): List<TrendingTvShowResultsItem> {
+    fun generateRemoteDummyTrendingTvShow(): List<TrendingTvShowResultsItem> {
         val tvShows = ArrayList<TrendingTvShowResultsItem>()
 
         tvShows.add(
@@ -533,5 +532,49 @@ object DataDummy {
         )
 
         return tvShows
+    }
+
+    fun generateRemoteDummyMovie(): MovieResponse {
+        val listGenres = ArrayList<MovieGenresItem>()
+        listGenres.add(MovieGenresItem("Action", 1))
+        listGenres.add(MovieGenresItem("Comedy", 2))
+        listGenres.add(MovieGenresItem("Horror", 3))
+
+        return MovieResponse(
+            id = "575417",
+            voteAverage = 6.5,
+            voteCount = 33,
+            title = "On the Rocks",
+            releaseDate = "2020-10-02",
+            originalTitle = "On the Rocks",
+            backdropPath = "/7FQHLt4iNh2TZ58cAAYrZK0xogg.jpg",
+            posterPath = "/fcijRCmB7yTtloh4Pumy9b1rkwU.jpg",
+            overview = "Faced with sudden doubts about her marriage, a young New York mother teams up with her larger-than-life playboy father to tail her husband.",
+            runtime = 90,
+            tagline = "Faced with sudden doubts about her marriage",
+            genres = listGenres
+        )
+    }
+
+    fun generateRemoteDummyTvShow(): TvShowResponse {
+        val listGenres = ArrayList<TvShowGenresItem>()
+        listGenres.add(TvShowGenresItem("Action", 1))
+        listGenres.add(TvShowGenresItem("Comedy", 2))
+        listGenres.add(TvShowGenresItem("Horror", 3))
+
+        return TvShowResponse(
+            originalName = "The Boys",
+            id = "76479",
+            name = "The Boys",
+            voteAverage = 8.4,
+            voteCount = 235,
+            firstAirDate = "2019-07-25",
+            posterPath = "/mY7SeH4HFFxW1hiI6cWuwCRKptN.jpg",
+            backdropPath = "/mGVrXeIjyecj6TKmwPVpHlscEmw.jpg",
+            overview = "A group of vigilantes known informally as “The Boys” set out to take down corrupt superheroes with no more than blue-collar grit and a willingness to fight dirty.",
+            numberOfEpisodes = 12,
+            numberOfSeasons = 2,
+            genres = listGenres
+        )
     }
 }

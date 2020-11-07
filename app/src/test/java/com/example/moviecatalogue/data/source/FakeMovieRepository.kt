@@ -11,17 +11,17 @@ import com.example.moviecatalogue.data.source.remote.response.*
 import com.example.moviecatalogue.utils.Helper.getMovieGenres
 import com.example.moviecatalogue.utils.Helper.getTvShowGenres
 
-class FakeMovieRepository(private val remoteDataSource: RemoteDataSource) :
+class FakeMovieRepository (private val remoteDataSource: RemoteDataSource) :
     MovieDataSource {
 
     override fun getTrendingMovie(): LiveData<List<Movie>> {
         val itemResults = MutableLiveData<List<Movie>>()
-        remoteDataSource.getTrendingMovie(object : CallbackApiListener<TrendingMovieResponse> {
-            override fun onSuccess(response: TrendingMovieResponse?) {
+        remoteDataSource.getTrendingMovie(object :
+            CallbackApiListener<List<TrendingMovieResultsItem>> {
+            override fun onSuccess(response: List<TrendingMovieResultsItem>?) {
                 val listMovies = ArrayList<Movie>()
-                val responseResults = response?.results
-                if (responseResults != null) {
-                    for (itemResponse in responseResults) {
+                if (response != null) {
+                    for (itemResponse in response) {
                         val item = Movie(
                             id = itemResponse.id,
                             originalTitle = itemResponse.originalTitle,
@@ -46,12 +46,12 @@ class FakeMovieRepository(private val remoteDataSource: RemoteDataSource) :
 
     override fun getTrendingTvShow(): LiveData<List<TvShow>> {
         val itemResults = MutableLiveData<List<TvShow>>()
-        remoteDataSource.getTrendingTvShow(object : CallbackApiListener<TrendingTvShowResponse> {
-            override fun onSuccess(response: TrendingTvShowResponse?) {
+        remoteDataSource.getTrendingTvShow(object :
+            CallbackApiListener<List<TrendingTvShowResultsItem>> {
+            override fun onSuccess(response: List<TrendingTvShowResultsItem>?) {
                 val listMovies = ArrayList<TvShow>()
-                val responseResults = response?.results
-                if (responseResults != null) {
-                    for (itemResponse in responseResults) {
+                if (response != null) {
+                    for (itemResponse in response) {
                         val item = TvShow(
                             id = itemResponse.id,
                             originalName = itemResponse.originalName,
