@@ -7,6 +7,6 @@ import com.example.moviecatalogue.data.TvShow
 interface MovieDataSource {
     fun getTrendingMovie(): LiveData<List<Movie>>
     fun getTrendingTvShow(): LiveData<List<TvShow>>
-    fun getMovie(movieId: Int): LiveData<Movie>
-    fun getTvShow(tvShowId: Int): LiveData<TvShow>
+    fun getMovie(movieId: String): LiveData<Movie>
+    fun getTvShow(tvShowId: String): LiveData<TvShow>
 }

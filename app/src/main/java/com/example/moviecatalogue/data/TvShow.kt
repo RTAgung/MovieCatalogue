@@ -1,7 +1,7 @@
 package com.example.moviecatalogue.data
 
 data class TvShow(
-    var id: Int? = null,
+    var id: String? = null,
     var name: String? = null,
     var originalName: String? = null,
     var overview: String? = null,

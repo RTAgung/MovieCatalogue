@@ -32,7 +32,7 @@ data class MovieResponse(
 	val productionCountries: List<MovieProductionCountriesItem>,
 
 	@field:SerializedName("id")
-	val id: Int,
+	val id: String,
 
 	@field:SerializedName("vote_count")
 	val voteCount: Int,

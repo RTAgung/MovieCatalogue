@@ -56,7 +56,7 @@ data class TrendingMovieResultsItem(
 	val popularity: Double,
 
 	@field:SerializedName("id")
-	val id: Int,
+	val id: String,
 
 	@field:SerializedName("adult")
 	val adult: Boolean,

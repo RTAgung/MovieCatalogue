@@ -17,8 +17,8 @@ interface MovieApiService {
     fun getTrendingTvShow(): Call<TrendingTvShowResponse>
 
     @GET("/movie/{movie_id}?api_key=$API_KEY")
-    fun getMovie(@Path("movie_id") movieId: Int): Call<MovieResponse>
+    fun getMovie(@Path("movie_id") movieId: String): Call<MovieResponse>
 
     @GET("/tv/{tv_id}?api_key=$API_KEY")
-    fun getTvShow(@Path("tv_id") tvShowId: Int): Call<TvShowResponse>
+    fun getTvShow(@Path("tv_id") tvShowId: String): Call<TvShowResponse>
 }

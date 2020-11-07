@@ -72,7 +72,7 @@ class MovieRepository private constructor(private val remoteDataSource: RemoteDa
         return itemResults
     }
 
-    override fun getMovie(movieId: Int): LiveData<Movie> {
+    override fun getMovie(movieId: String): LiveData<Movie> {
         val itemResult = MutableLiveData<Movie>()
         remoteDataSource.getMovie(movieId, object : CallbackApiListener<MovieResponse> {
             override fun onSuccess(response: MovieResponse?) {
@@ -101,7 +101,7 @@ class MovieRepository private constructor(private val remoteDataSource: RemoteDa
         return itemResult
     }
 
-    override fun getTvShow(tvShowId: Int): LiveData<TvShow> {
+    override fun getTvShow(tvShowId: String): LiveData<TvShow> {
         val itemResult = MutableLiveData<TvShow>()
         remoteDataSource.getTvShow(tvShowId, object : CallbackApiListener<TvShowResponse> {
             override fun onSuccess(response: TvShowResponse?) {
