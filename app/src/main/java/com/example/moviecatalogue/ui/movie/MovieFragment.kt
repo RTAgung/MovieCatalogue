@@ -28,7 +28,7 @@ class MovieFragment : Fragment() {
                 requireActivity(),
                 ViewModelProvider.NewInstanceFactory()
             )[HomeViewModel::class.java]
-            val listMovies = viewModel.getAllMovie()
+            val listMovies = viewModel.getTrendingMovie()
 
             val movieAdapter = MovieAdapter()
             movieAdapter.listMovies = listMovies

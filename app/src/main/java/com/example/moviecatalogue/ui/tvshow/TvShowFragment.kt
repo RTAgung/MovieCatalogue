@@ -28,7 +28,7 @@ class TvShowFragment : Fragment() {
                 requireActivity(),
                 ViewModelProvider.NewInstanceFactory()
             )[HomeViewModel::class.java]
-            val listTvShows = viewModel.getAllTvShow()
+            val listTvShows = viewModel.getTrendingTvShow()
 
             val tvShowAdapter = TvShowAdapter()
             tvShowAdapter.listTvShows = listTvShows

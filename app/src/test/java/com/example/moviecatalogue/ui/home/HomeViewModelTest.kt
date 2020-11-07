@@ -33,7 +33,7 @@ class HomeViewModelTest {
 
     @Test
     fun getAllMovie() {
-        val movies = viewModel.getAllMovie()
+        val movies = viewModel.getTrendingMovie()
         assertNotNull(movies)
         assertEquals(dummyFirstMovie, movies[0])
         assertEquals(dummyMovieSize, movies.size)
@@ -41,7 +41,7 @@ class HomeViewModelTest {
 
     @Test
     fun getAllTvShow() {
-        val tvShows = viewModel.getAllTvShow()
+        val tvShows = viewModel.getTrendingTvShow()
         assertNotNull(tvShows)
         assertEquals(dummyFirstTvShow, tvShows[0])
         assertEquals(dummyTvShowSize, tvShows.size)
