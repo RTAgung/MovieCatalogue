@@ -11,5 +11,6 @@ data class Movie(
     var voteCount: Int? = null,
     var runtime: Int? = null,
     var posterPath: String? = null,
-    var backdropPath: String? = null
+    var backdropPath: String? = null,
+    var genres: List<String>? = null
 )

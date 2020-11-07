@@ -28,6 +28,6 @@ class SectionsPagerAdapter(private val mContext: Context, fm: FragmentManager) :
 
     companion object {
         @StringRes
-        private val TAB_TITLES = intArrayOf(R.string.movie, R.string.tvshow)
+        private val TAB_TITLES = intArrayOf(R.string.movie, R.string.tv_show)
     }
 }

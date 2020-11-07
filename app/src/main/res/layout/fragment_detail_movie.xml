@@ -109,7 +109,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/side_sm"
-            android:gravity="end"
+            android:gravity="start"
             android:textColor="@color/colorTextSecondary"
             android:textSize="@dimen/text_md"
             android:textStyle="bold"
@@ -117,6 +117,20 @@
             app:layout_constraintStart_toEndOf="@+id/iv_star"
             app:layout_constraintTop_toTopOf="@+id/iv_star"
             tools:text="6.8" />
+
+        <TextView
+            android:id="@+id/tv_rate_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/side_sm"
+            android:gravity="start"
+            android:textColor="@color/colorTextSecondary"
+            android:textSize="@dimen/text_sm"
+            android:textStyle="italic"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_rate_avg"
+            app:layout_constraintStart_toEndOf="@+id/tv_rate_avg"
+            app:layout_constraintTop_toTopOf="@+id/tv_rate_avg"
+            tools:text="(354)" />
 
         <TextView
             android:id="@+id/tv_movie"
@@ -133,17 +147,63 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/separator_line" />
 
+        <TextView
+            android:id="@+id/tv_runtime"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/side_lgr"
+            android:layout_marginTop="@dimen/side_sm"
+            android:layout_marginEnd="@dimen/side_lgr"
+            android:gravity="center_horizontal"
+            android:textColor="@color/colorTextSecondary"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_movie"
+            tools:text="1h 30m" />
+
+        <TextView
+            android:id="@+id/tv_tagline"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/side_lgr"
+            android:layout_marginTop="@dimen/side_md"
+            android:layout_marginEnd="@dimen/side_lgr"
+            android:gravity="center_horizontal"
+            android:textColor="@color/colorTextSecondary"
+            android:textStyle="italic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_runtime"
+            tools:text="asd a skdja hslask dja skdjahs culture, the COVID-19 pandemic, and the political elections." />
+
+        <TextView
+            android:id="@+id/tv_genres"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/side_lgr"
+            android:layout_marginTop="@dimen/side_lg"
+            android:layout_marginEnd="@dimen/side_lgr"
+            android:gravity="start"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/text_sm"
+            android:textStyle="italic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_tagline"
+            tools:text="Action, Horror, Comedy" />
+
         <View
             android:id="@+id/separator_line2"
             android:layout_width="0dp"
             android:layout_height="1.5dp"
             android:layout_marginStart="@dimen/side_lgr"
-            android:layout_marginTop="@dimen/side_lgr"
+            android:layout_marginTop="@dimen/side_md"
             android:layout_marginEnd="@dimen/side_lgr"
             android:background="@color/colorPrimaryDark"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_movie" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_genres" />
 
         <TextView
             android:id="@+id/tv_overview_head"

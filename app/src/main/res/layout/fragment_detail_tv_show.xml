@@ -87,10 +87,10 @@
             android:gravity="end"
             android:textColor="@color/colorPrimary"
             android:textSize="@dimen/text_md"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_tvshow"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_tv_show"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/tv_tvshow"
-            app:layout_constraintTop_toTopOf="@+id/tv_tvshow"
+            app:layout_constraintStart_toEndOf="@+id/tv_tv_show"
+            app:layout_constraintTop_toTopOf="@+id/tv_tv_show"
             tools:text="@string/start_on_detail" />
 
         <ImageView
@@ -99,9 +99,9 @@
             android:layout_height="24dp"
             android:layout_marginStart="@dimen/side_lgr"
             android:src="@drawable/ic_baseline_stars_24"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_tvshow"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_tv_show"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/tv_tvshow"
+            app:layout_constraintTop_toTopOf="@+id/tv_tv_show"
             tools:ignore="ContentDescription" />
 
         <TextView
@@ -119,13 +119,27 @@
             tools:text="6.8" />
 
         <TextView
-            android:id="@+id/tv_tvshow"
+            android:id="@+id/tv_rate_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/side_sm"
+            android:gravity="start"
+            android:textColor="@color/colorTextSecondary"
+            android:textSize="@dimen/text_sm"
+            android:textStyle="italic"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_rate_avg"
+            app:layout_constraintStart_toEndOf="@+id/tv_rate_avg"
+            app:layout_constraintTop_toTopOf="@+id/tv_rate_avg"
+            tools:text="(354)" />
+
+        <TextView
+            android:id="@+id/tv_tv_show"
             android:layout_width="90dp"
             android:layout_height="30dp"
             android:layout_marginTop="@dimen/side_lgr"
             android:background="@drawable/type_background"
             android:gravity="center"
-            android:text="@string/tvshow"
+            android:text="@string/tv_show"
             android:textColor="@android:color/white"
             android:textSize="@dimen/text_lg"
             android:textStyle="bold"
@@ -133,18 +147,69 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/separator_line" />
 
-
         <View
-            android:id="@+id/separator_line3"
-            android:layout_width="0dp"
-            android:layout_height="1.5dp"
+            android:id="@+id/separator_line2"
+            android:layout_width="1.5dp"
+            android:layout_height="24dp"
             android:layout_marginStart="@dimen/side_lgr"
             android:layout_marginTop="@dimen/side_lgr"
             android:layout_marginEnd="@dimen/side_lgr"
             android:background="@color/colorPrimaryDark"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_tvshow" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_tv_show" />
+
+        <TextView
+            android:id="@+id/tv_episodes"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/side_sm"
+            android:gravity="end"
+            android:text="@string/episodes"
+            android:textColor="@color/colorPrimary"
+            app:layout_constraintBottom_toBottomOf="@+id/separator_line2"
+            app:layout_constraintEnd_toStartOf="@+id/separator_line2"
+            app:layout_constraintTop_toTopOf="@+id/separator_line2" />
+
+        <TextView
+            android:id="@+id/tv_seasons"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/side_sm"
+            android:gravity="start"
+            android:text="@string/seasons"
+            android:textColor="@color/colorPrimary"
+            app:layout_constraintBottom_toBottomOf="@+id/separator_line2"
+            app:layout_constraintStart_toEndOf="@+id/separator_line2"
+            app:layout_constraintTop_toTopOf="@+id/separator_line2" />
+
+        <TextView
+            android:id="@+id/tv_genres"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/side_lgr"
+            android:layout_marginTop="@dimen/side_lg"
+            android:layout_marginEnd="@dimen/side_lgr"
+            android:gravity="start"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/text_sm"
+            android:textStyle="italic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/separator_line2"
+            tools:text="Action, Horror, Comedy" />
+
+        <View
+            android:id="@+id/separator_line3"
+            android:layout_width="0dp"
+            android:layout_height="1.5dp"
+            android:layout_marginStart="@dimen/side_lgr"
+            android:layout_marginTop="@dimen/side_md"
+            android:layout_marginEnd="@dimen/side_lgr"
+            android:background="@color/colorPrimaryDark"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_genres" />
 
         <TextView
             android:id="@+id/tv_overview_head"

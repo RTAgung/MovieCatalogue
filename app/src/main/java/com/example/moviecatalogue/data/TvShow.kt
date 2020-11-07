@@ -11,5 +11,6 @@ data class TvShow(
     var voteAverage: Double? = null,
     var voteCount: Int? = null,
     var backdropPath: String? = null,
-    var posterPath: String? = null
+    var posterPath: String? = null,
+    var genres: List<String>? = null
 )

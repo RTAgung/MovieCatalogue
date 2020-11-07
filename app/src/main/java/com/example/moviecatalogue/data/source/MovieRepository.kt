@@ -7,9 +7,7 @@ import com.example.moviecatalogue.data.Movie
 import com.example.moviecatalogue.data.TvShow
 import com.example.moviecatalogue.data.source.remote.CallbackApiListener
 import com.example.moviecatalogue.data.source.remote.RemoteDataSource
-import com.example.moviecatalogue.data.source.remote.response.MovieResponse
-import com.example.moviecatalogue.data.source.remote.response.TrendingMovieResponse
-import com.example.moviecatalogue.data.source.remote.response.TrendingTvShowResponse
+import com.example.moviecatalogue.data.source.remote.response.*
 
 class MovieRepository private constructor(private val remoteDataSource: RemoteDataSource) :
     MovieDataSource {
@@ -38,7 +36,7 @@ class MovieRepository private constructor(private val remoteDataSource: RemoteDa
             }
 
             override fun onFailed(message: String?) {
-                Log.d(TAG, message)
+                message?.let { Log.d(TAG, message) }
             }
         })
         return itemResults
@@ -46,7 +44,7 @@ class MovieRepository private constructor(private val remoteDataSource: RemoteDa
 
     override fun getTrendingTvShow(): LiveData<List<TvShow>> {
         val itemResults = MutableLiveData<List<TvShow>>()
-        remoteDataSource.getTrendingTvShow(object : CallbackApiListener<TrendingTvShowResponse>{
+        remoteDataSource.getTrendingTvShow(object : CallbackApiListener<TrendingTvShowResponse> {
             override fun onSuccess(response: TrendingTvShowResponse?) {
                 val listMovies = ArrayList<TvShow>()
                 val responseResults = response?.results
@@ -68,7 +66,7 @@ class MovieRepository private constructor(private val remoteDataSource: RemoteDa
             }
 
             override fun onFailed(message: String?) {
-                Log.d(TAG, message)
+                message?.let { Log.d(TAG, message) }
             }
         })
         return itemResults
@@ -76,20 +74,76 @@ class MovieRepository private constructor(private val remoteDataSource: RemoteDa
 
     override fun getMovie(movieId: Int): LiveData<Movie> {
         val itemResult = MutableLiveData<Movie>()
-        remoteDataSource.getMovie(object : CallbackApiListener<MovieResponse>{
+        remoteDataSource.getMovie(movieId, object : CallbackApiListener<MovieResponse> {
             override fun onSuccess(response: MovieResponse?) {
-                TODO("Not yet implemented")
+                if (response != null) {
+                    val movie = Movie(
+                        id = response.id,
+                        originalTitle = response.originalTitle,
+                        title = response.title,
+                        overview = response.overview,
+                        releaseDate = response.releaseDate,
+                        runtime = response.runtime,
+                        voteCount = response.voteCount,
+                        voteAverage = response.voteAverage,
+                        tagline = response.tagline,
+                        genres = getMovieGenres(response.genres),
+                        backdropPath = response.backdropPath
+                    )
+                    itemResult.postValue(movie)
+                }
             }
-// TODO: LENGKAPIN
+
             override fun onFailed(message: String?) {
-                Log.d(TAG, message)
+                message?.let { Log.d(TAG, message) }
             }
         })
         return itemResult
     }
 
     override fun getTvShow(tvShowId: Int): LiveData<TvShow> {
-        TODO("Not yet implemented")
+        val itemResult = MutableLiveData<TvShow>()
+        remoteDataSource.getTvShow(tvShowId, object : CallbackApiListener<TvShowResponse> {
+            override fun onSuccess(response: TvShowResponse?) {
+                if (response != null) {
+                    val tvShow = TvShow(
+                        id = response.id,
+                        originalName = response.originalName,
+                        name = response.name,
+                        overview = response.overview,
+                        firstAirDate = response.firstAirDate,
+                        numberOfEpisodes = response.numberOfEpisodes,
+                        numberOfSeasons = response.numberOfSeasons,
+                        voteCount = response.voteCount,
+                        voteAverage = response.voteAverage,
+                        genres = getTvShowGenres(response.genres),
+                        backdropPath = response.backdropPath
+                    )
+                    itemResult.postValue(tvShow)
+                }
+            }
+
+            override fun onFailed(message: String?) {
+                message?.let { Log.d(TAG, message) }
+            }
+        })
+        return itemResult
+    }
+
+    private fun getMovieGenres(responseGenre: List<MovieGenresItem>): List<String> {
+        val listGenres = ArrayList<String>()
+        for (genre in responseGenre) {
+            listGenres.add(genre.name)
+        }
+        return listGenres
+    }
+
+    private fun getTvShowGenres(responseGenre: List<TvShowGenresItem>): List<String> {
+        val listGenres = ArrayList<String>()
+        for (genre in responseGenre) {
+            listGenres.add(genre.name)
+        }
+        return listGenres
     }
 
     companion object {

@@ -51,9 +51,9 @@ class RemoteDataSource private constructor(private val apiConfig: MovieApiConfig
         })
     }
 
-    fun getMovie(callback: CallbackApiListener<MovieResponse>, MovieId: Int) {
+    fun getMovie(movieId: Int, callback: CallbackApiListener<MovieResponse>) {
         EspressoIdlingResource.increment()
-        val client = apiConfig.getApiService()?.getMovie(MovieId)
+        val client = apiConfig.getApiService()?.getMovie(movieId)
         client?.enqueue(object : Callback<MovieResponse> {
             override fun onResponse(call: Call<MovieResponse>, response: Response<MovieResponse>) {
                 val items = response.body()
@@ -69,7 +69,7 @@ class RemoteDataSource private constructor(private val apiConfig: MovieApiConfig
         })
     }
 
-    fun getTvShow(callback: CallbackApiListener<TvShowResponse>, tvShowId: Int) {
+    fun getTvShow(tvShowId: Int, callback: CallbackApiListener<TvShowResponse>) {
         EspressoIdlingResource.increment()
         val client = apiConfig.getApiService()?.getTvShow(tvShowId)
         client?.enqueue(object : Callback<TvShowResponse> {
