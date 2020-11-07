@@ -78,7 +78,6 @@ class MovieRepositoryTest {
         assertEquals(movieResponses.originalTitle, movie.originalTitle)
         assertEquals(movieResponses.voteAverage, movie.voteAverage)
         assertEquals(movieResponses.voteCount, movie.voteCount)
-        assertEquals(movieResponses.genres, movie.genres)
         assertEquals(movieResponses.backdropPath, movie.backdropPath)
     }
 
@@ -101,7 +100,6 @@ class MovieRepositoryTest {
         assertEquals(tvShowResponses.originalName, tvShow.originalName)
         assertEquals(tvShowResponses.voteAverage, tvShow.voteAverage)
         assertEquals(tvShowResponses.voteCount, tvShow.voteCount)
-        assertEquals(tvShowResponses.genres, tvShow.genres)
         assertEquals(tvShowResponses.backdropPath, tvShow.backdropPath)
     }
 }

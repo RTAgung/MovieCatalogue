@@ -6,7 +6,7 @@ import com.example.moviecatalogue.data.source.remote.response.*
 
 object DataDummy {
 
-    fun generateDummyMovie(): ArrayList<Movie> {
+    fun generateDummyMovie(): List<Movie> {
         val movies = ArrayList<Movie>()
 
         movies.add(
@@ -133,7 +133,7 @@ object DataDummy {
         return movies
     }
 
-    fun generateDummyTvShow(): ArrayList<TvShow> {
+    fun generateDummyTvShow(): List<TvShow> {
         val tvShows = ArrayList<TvShow>()
 
         tvShows.add(

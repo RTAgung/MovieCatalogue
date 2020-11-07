@@ -54,6 +54,7 @@ class DetailMovieViewModelTest {
             `when`(movieRepository.getMovie(dummyMovieId)).thenReturn(movieLive)
             val movie = viewModel.getMovie().value as Movie
             verify(movieRepository).getMovie(dummyMovieId)
+
             assertNotNull(movie)
             assertEquals(dummyMovie.id, movie.id)
             assertEquals(dummyMovie.originalTitle, movie.originalTitle)
@@ -63,6 +64,10 @@ class DetailMovieViewModelTest {
             assertEquals(dummyMovie.posterPath, movie.posterPath)
             assertEquals(dummyMovie.releaseDate, movie.releaseDate)
             assertEquals(dummyMovie.voteAverage, movie.voteAverage)
+            assertEquals(dummyMovie.voteCount, movie.voteCount)
+            assertEquals(dummyMovie.tagline, movie.tagline)
+            assertEquals(dummyMovie.genres, movie.genres)
+            assertEquals(dummyMovie.runtime, movie.runtime)
 
             viewModel.getMovie().observeForever(movieObserver)
             Mockito.verify(movieObserver).onChanged(dummyMovie)
