@@ -2,11 +2,12 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
     <item
-        tools:height="281px"
-        tools:targetApi="m"
-        tools:width="500px"
+        android:width="500px"
         android:height="281px"
-        android:width="500px">
+        tools:height="281px"
+        tools:ignore="UnusedAttribute"
+        tools:targetApi="m"
+        tools:width="500px">
         <shape>
             <solid android:color="@color/colorImage" />
         </shape>

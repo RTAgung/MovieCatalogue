@@ -165,11 +165,11 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/side_sm"
             android:gravity="end"
-            tools:text="8 episodes"
             android:textColor="@color/colorPrimary"
             app:layout_constraintBottom_toBottomOf="@+id/separator_line2"
             app:layout_constraintEnd_toStartOf="@+id/separator_line2"
-            app:layout_constraintTop_toTopOf="@+id/separator_line2" />
+            app:layout_constraintTop_toTopOf="@+id/separator_line2"
+            tools:text="8 episodes" />
 
         <TextView
             android:id="@+id/tv_seasons"
@@ -177,11 +177,11 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/side_sm"
             android:gravity="start"
-            tools:text="2 seasons"
             android:textColor="@color/colorPrimary"
             app:layout_constraintBottom_toBottomOf="@+id/separator_line2"
             app:layout_constraintStart_toEndOf="@+id/separator_line2"
-            app:layout_constraintTop_toTopOf="@+id/separator_line2" />
+            app:layout_constraintTop_toTopOf="@+id/separator_line2"
+            tools:text="2 seasons" />
 
         <TextView
             android:id="@+id/tv_genres"
