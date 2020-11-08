@@ -11,7 +11,7 @@ import com.example.moviecatalogue.data.source.remote.response.*
 import com.example.moviecatalogue.utils.Helper.getMovieGenres
 import com.example.moviecatalogue.utils.Helper.getTvShowGenres
 
-class FakeMovieRepository (private val remoteDataSource: RemoteDataSource) :
+class FakeMovieRepository(private val remoteDataSource: RemoteDataSource) :
     MovieDataSource {
 
     override fun getTrendingMovie(): LiveData<List<Movie>> {

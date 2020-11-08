@@ -2,13 +2,16 @@ package com.example.moviecatalogue.ui.home
 
 import androidx.recyclerview.widget.RecyclerView
 import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.IdlingRegistry
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.rule.ActivityTestRule
 import com.example.moviecatalogue.R
-import com.example.moviecatalogue.utils.DataDummy
+import com.example.moviecatalogue.utils.EspressoIdlingResource.espressoTestIdlingResource
+import org.junit.After
+import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 
@@ -22,98 +25,72 @@ Scenario Instrumental Testing :
     - Memastikan rv_tvshow dalam keadaan tampil
     - Gulir rv_tvshow ke dalam posisi terakhir
 3. Menampilkan detail data movie
+    - Mengamambil string original title pada item pertama
     - Memberi tindakan klik pada data pertama di rv_movie
-    - Memastikan TextView untuk original title tampil sesuai dengan yang diharapkan.
-    - Memastikan TextView untuk title tampil sesuai dengan yang diharapkan.
-    - Memastikan TextView untuk vote_average tampil sesuai dengan yang diharapkan.
-    - Memastikan TextView untuk release tampil sesuai dengan yang diharapkan.
-    - Memastikan TextView untuk overview tampil sesuai dengan yang diharapkan.
+    - Memastikan TextView untuk original title tampil sesuai dengan yang diharapkan
 4. Menampilkan detail data tv show
     - Klik TabLayout dengan teks "TV SHOW"
+    - Mengamambil string original title pada item pertama
     - Memberi tindakan klik pada data pertama di rv_tvshow
     - Memastikan TextView untuk original title tampil sesuai dengan yang diharapkan.
-    - Memastikan TextView untuk title tampil sesuai dengan yang diharapkan.
-    - Memastikan TextView untuk vote_average tampil sesuai dengan yang diharapkan.
-    - Memastikan TextView untuk start air tampil sesuai dengan yang diharapkan.
-    - Memastikan TextView untuk overview tampil sesuai dengan yang diharapkan.
  */
 
 class HomeActivityTest {
-    private val dummyMovies = DataDummy.generateDummyMovie()
-    private val dummyTvShows = DataDummy.generateDummyTvShow()
+    private lateinit var movieTitle: String
+    private lateinit var tvShowTitle: String
 
     @get:Rule
     var activityRule = ActivityTestRule(HomeActivity::class.java)
+
+    @Before
+    fun setUp() {
+        IdlingRegistry.getInstance().register(espressoTestIdlingResource)
+    }
+
+    @After
+    fun tearDown() {
+        IdlingRegistry.getInstance().unregister(espressoTestIdlingResource)
+    }
 
     @Test
     fun loadMovies() {
         onView(withId(R.id.rv_movie)).check(matches(isDisplayed()))
         onView(withId(R.id.rv_movie)).perform(
-            RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(
-                dummyMovies.size
-            )
+            RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(20)
         )
     }
 
     @Test
     fun loadTvShows() {
-        onView(withText("TV SHOW")).perform(click())
+        onView(withText(activityRule.activity.resources.getString(R.string.tv_show))).perform(click())
         onView(withId(R.id.rv_tv_show)).check(matches(isDisplayed()))
         onView(withId(R.id.rv_tv_show)).perform(
-            RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(
-                dummyTvShows.size
-            )
+            RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(20)
         )
     }
 
     @Test
     fun loadDetailMovie() {
-        onView(withId(R.id.rv_movie)).perform(
-            RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(
-                0,
-                click()
-            )
+        onView(withId(R.id.rv_movie)).also {
+            movieTitle = TitleUtil.getMovieTitle(it, 0)
+        }.perform(
+            RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click())
         )
 
         onView(withId(R.id.tv_original_title)).check(matches(isDisplayed()))
-        onView(withId(R.id.tv_original_title)).check(matches(withText(dummyMovies[0].originalTitle)))
-
-        onView(withId(R.id.tv_title)).check(matches(isDisplayed()))
-        onView(withId(R.id.tv_title)).check(matches(withText(dummyMovies[0].title)))
-
-        onView(withId(R.id.tv_rate_avg)).check(matches(isDisplayed()))
-        onView(withId(R.id.tv_rate_avg)).check(matches(withText(dummyMovies[0].voteAverage)))
-
-        onView(withId(R.id.tv_release)).check(matches(isDisplayed()))
-        onView(withId(R.id.tv_release)).check(matches(withText("Release on\n${dummyMovies[0].releaseDate}")))
-
-        onView(withId(R.id.tv_overview)).check(matches(isDisplayed()))
-        onView(withId(R.id.tv_overview)).check(matches(withText(dummyMovies[0].overview)))
+        onView(withId(R.id.tv_original_title)).check(matches(withText(movieTitle)))
     }
 
     @Test
     fun loadDetailTvShow() {
-        onView(withText("TV SHOW")).perform(click())
-        onView(withId(R.id.rv_tv_show)).perform(
-            RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(
-                0,
-                click()
-            )
+        onView(withText(activityRule.activity.resources.getString(R.string.tv_show))).perform(click())
+        onView(withId(R.id.rv_tv_show)).also {
+            tvShowTitle = TitleUtil.getTvShowTitle(it, 0)
+        }.perform(
+            RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click())
         )
 
         onView(withId(R.id.tv_original_title)).check(matches(isDisplayed()))
-        onView(withId(R.id.tv_original_title)).check(matches(withText(dummyTvShows[0].originalName)))
-
-        onView(withId(R.id.tv_title)).check(matches(isDisplayed()))
-        onView(withId(R.id.tv_title)).check(matches(withText(dummyTvShows[0].name)))
-
-        onView(withId(R.id.tv_rate_avg)).check(matches(isDisplayed()))
-        onView(withId(R.id.tv_rate_avg)).check(matches(withText(dummyTvShows[0].voteAverage)))
-
-        onView(withId(R.id.tv_release)).check(matches(isDisplayed()))
-        onView(withId(R.id.tv_release)).check(matches(withText("Start on\n${dummyTvShows[0].firstAirDate}")))
-
-        onView(withId(R.id.tv_overview)).check(matches(isDisplayed()))
-        onView(withId(R.id.tv_overview)).check(matches(withText(dummyTvShows[0].overview)))
+        onView(withId(R.id.tv_original_title)).check(matches(withText(tvShowTitle)))
     }
 }

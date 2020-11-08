@@ -64,9 +64,21 @@ class DetailTvShowFragment : Fragment() {
             tv_rate_count.text = rateCount
             tv_release.text = resources.getString(R.string.start_on_detail, tvShow.firstAirDate)
             tv_episodes.text =
-                tvShow.numberOfEpisodes?.let { resources.getQuantityString(R.plurals.episodes, it, it) }
+                tvShow.numberOfEpisodes?.let {
+                    resources.getQuantityString(
+                        R.plurals.episodes,
+                        it,
+                        it
+                    )
+                }
             tv_seasons.text =
-                tvShow.numberOfSeasons?.let { resources.getQuantityString(R.plurals.seasons, it, it) }
+                tvShow.numberOfSeasons?.let {
+                    resources.getQuantityString(
+                        R.plurals.seasons,
+                        it,
+                        it
+                    )
+                }
             tv_genres.text = tvShow.genres?.let { genresFormatting(it) }
             tv_overview.text = tvShow.overview
 
