@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.example.moviecatalogue.R
+import com.example.moviecatalogue.ui.home.favorite.FavoriteFragment
 import com.example.moviecatalogue.ui.home.movie.MovieFragment
 import com.example.moviecatalogue.ui.home.tvshow.TvShowFragment
 
@@ -16,6 +17,7 @@ class SectionsPagerAdapter(private val mContext: Context, fm: FragmentManager) :
         return when (position) {
             0 -> MovieFragment()
             1 -> TvShowFragment()
+            2 -> FavoriteFragment()
             else -> Fragment()
         }
     }
@@ -28,6 +30,6 @@ class SectionsPagerAdapter(private val mContext: Context, fm: FragmentManager) :
 
     companion object {
         @StringRes
-        private val TAB_TITLES = intArrayOf(R.string.movie, R.string.tv_show)
+        private val TAB_TITLES = intArrayOf(R.string.movie, R.string.tv_show, R.string.favorite)
     }
 }

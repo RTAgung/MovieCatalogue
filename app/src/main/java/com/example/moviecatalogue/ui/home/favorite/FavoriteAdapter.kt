@@ -64,9 +64,8 @@ class FavoriteAdapter :
 
     override fun onBindViewHolder(holder: FavoriteViewHolder, position: Int) {
         val favorite = getItem(position)
-        if (favorite != null) {
+        if (favorite != null)
             holder.bind(favorite)
-        }
     }
 
     companion object {
