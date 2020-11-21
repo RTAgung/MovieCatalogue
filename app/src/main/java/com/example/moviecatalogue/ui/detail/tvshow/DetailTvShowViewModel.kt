@@ -2,7 +2,7 @@ package com.example.moviecatalogue.ui.detail.tvshow
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import com.example.moviecatalogue.data.TvShow
+import com.example.moviecatalogue.data.source.local.entity.TvShowEntity
 import com.example.moviecatalogue.data.source.MovieRepository
 
 class DetailTvShowViewModel(private val movieRepository: MovieRepository) : ViewModel() {
@@ -12,5 +12,5 @@ class DetailTvShowViewModel(private val movieRepository: MovieRepository) : View
         this.tvShowId = tvShowId
     }
 
-    fun getTvShow(): LiveData<TvShow> = movieRepository.getTvShow(tvShowId)
+    fun getTvShow(): LiveData<TvShowEntity> = movieRepository.getTvShow(tvShowId)
 }

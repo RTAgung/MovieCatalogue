@@ -42,9 +42,11 @@ ext {
     materialVersion = '1.2.1'
     recyclerViewVersion = '1.1.0'
     glideVersion = '4.11.0'
+    pagingVersion = '2.1.1'
 
     archLifecycleVersion = '2.1.0'
 
     retrofitVersion = '2.9.0'
     okhttp3LoggingVersion = '4.9.0'
+    roomVersion = '2.2.3'
 }

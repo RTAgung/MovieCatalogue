@@ -3,8 +3,8 @@ package com.example.moviecatalogue.ui.home
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
-import com.example.moviecatalogue.data.Movie
-import com.example.moviecatalogue.data.TvShow
+import com.example.moviecatalogue.data.source.local.entity.MovieEntity
+import com.example.moviecatalogue.data.source.local.entity.TvShowEntity
 import com.example.moviecatalogue.data.source.MovieRepository
 import com.example.moviecatalogue.utils.DataDummy
 import com.nhaarman.mockitokotlin2.verify
@@ -19,7 +19,7 @@ import org.mockito.junit.MockitoJUnitRunner
 
 /*
 Scenario HomeViewModelTest :
-    - Memuat Daftar Movie
+    - Memuat Daftar MovieEntity
         - Memanipulasi data ketika pemanggilan data movie di kelas repository
         - Memastikan metode di kelas repository terpanggil
         - Memastikan data movie tidak null
@@ -50,10 +50,10 @@ class HomeViewModelTest {
     private lateinit var movieRepository: MovieRepository
 
     @Mock
-    private lateinit var movieObserver: Observer<List<Movie>>
+    private lateinit var movieEntityObserver: Observer<List<MovieEntity>>
 
     @Mock
-    private lateinit var tvShowObserver: Observer<List<TvShow>>
+    private lateinit var tvShowEntityObserver: Observer<List<TvShowEntity>>
 
     @Before
     fun setUp() {
@@ -63,34 +63,34 @@ class HomeViewModelTest {
     @Test
     fun getTrendingMovie() {
         val dummyMovies = DataDummy.generateDummyMovie()
-        val moviesLive = MutableLiveData<List<Movie>>()
+        val moviesLive = MutableLiveData<List<MovieEntity>>()
         moviesLive.value = dummyMovies
 
-        `when`(movieRepository.getTrendingMovie()).thenReturn(moviesLive)
+        `when`(movieRepository.getTopMovies()).thenReturn(moviesLive)
         val movies = viewModel.getTrendingMovie().value
-        verify(movieRepository).getTrendingMovie()
+        verify(movieRepository).getTopMovies()
         assertNotNull(movies)
         assertEquals(dummyFirstMovie, movies?.get(0))
         assertEquals(dummyMovieSize, movies?.size)
 
-        viewModel.getTrendingMovie().observeForever(movieObserver)
-        verify(movieObserver).onChanged(dummyMovies)
+        viewModel.getTrendingMovie().observeForever(movieEntityObserver)
+        verify(movieEntityObserver).onChanged(dummyMovies)
     }
 
     @Test
     fun getTrendingTvShow() {
         val dummyTvShows = DataDummy.generateDummyTvShow()
-        val tvShowsLive = MutableLiveData<List<TvShow>>()
+        val tvShowsLive = MutableLiveData<List<TvShowEntity>>()
         tvShowsLive.value = dummyTvShows
 
-        `when`(movieRepository.getTrendingTvShow()).thenReturn(tvShowsLive)
+        `when`(movieRepository.getTopTvShows()).thenReturn(tvShowsLive)
         val tvShows = viewModel.getTrendingTvShow().value
-        verify(movieRepository).getTrendingTvShow()
+        verify(movieRepository).getTopTvShows()
         assertNotNull(tvShows)
         assertEquals(dummyFirstTvShow, tvShows?.get(0))
         assertEquals(dummyTvShowSize, tvShows?.size)
 
-        viewModel.getTrendingTvShow().observeForever(tvShowObserver)
-        verify(tvShowObserver).onChanged(dummyTvShows)
+        viewModel.getTrendingTvShow().observeForever(tvShowEntityObserver)
+        verify(tvShowEntityObserver).onChanged(dummyTvShows)
     }
 }

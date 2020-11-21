@@ -1,12 +1,24 @@
 package com.example.moviecatalogue.data.source
 
 import androidx.lifecycle.LiveData
-import com.example.moviecatalogue.data.Movie
-import com.example.moviecatalogue.data.TvShow
+import androidx.paging.PagedList
+import com.example.moviecatalogue.data.source.local.entity.FavoriteEntity
+import com.example.moviecatalogue.data.source.local.entity.MovieEntity
+import com.example.moviecatalogue.data.source.local.entity.TvShowEntity
+import com.example.moviecatalogue.vo.Resource
 
 interface MovieDataSource {
-    fun getTrendingMovie(): LiveData<List<Movie>>
-    fun getTrendingTvShow(): LiveData<List<TvShow>>
-    fun getMovie(movieId: String): LiveData<Movie>
-    fun getTvShow(tvShowId: String): LiveData<TvShow>
+    fun getTopMovies(): LiveData<Resource<PagedList<MovieEntity>>>
+
+    fun getMovie(movieId: String): LiveData<Resource<MovieEntity>>
+
+    fun getTopTvShows(): LiveData<Resource<PagedList<TvShowEntity>>>
+
+    fun getTvShow(tvShowId: String): LiveData<Resource<TvShowEntity>>
+
+    fun getFavorite(): LiveData<PagedList<FavoriteEntity>>
+
+    fun insertFavorite(favorite: FavoriteEntity)
+
+    fun deleteFavorite(favorite: FavoriteEntity)
 }

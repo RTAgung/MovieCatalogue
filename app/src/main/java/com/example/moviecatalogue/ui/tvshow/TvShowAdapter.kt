@@ -8,14 +8,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.moviecatalogue.R
-import com.example.moviecatalogue.data.TvShow
+import com.example.moviecatalogue.data.source.local.entity.TvShowEntity
 import com.example.moviecatalogue.ui.detail.DetailActivity
 import com.example.moviecatalogue.ui.detail.DetailActivity.Companion.TV_SHOW_DESTINATION
 import com.example.moviecatalogue.utils.ConstantValue.IMAGE_URL
 import kotlinx.android.synthetic.main.items_film.view.*
 
 class TvShowAdapter : RecyclerView.Adapter<TvShowAdapter.TvShowViewHolder>() {
-    var listTvShows = ArrayList<TvShow>()
+    var listTvShows = ArrayList<TvShowEntity>()
         set(value) {
             field.clear()
             field.addAll(value)
@@ -23,15 +23,15 @@ class TvShowAdapter : RecyclerView.Adapter<TvShowAdapter.TvShowViewHolder>() {
         }
 
     class TvShowViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(tvShow: TvShow) {
+        fun bind(tvShowEntity: TvShowEntity) {
             with(itemView) {
-                tv_item_original_title.text = tvShow.originalName
-                tv_item_title.text = tvShow.name
+                tv_item_original_title.text = tvShowEntity.originalName
+                tv_item_title.text = tvShowEntity.name
                 tv_item_release.text =
-                    resources.getString(R.string.start_on, tvShow.firstAirDate)
-                tv_item_rate.text = tvShow.voteAverage.toString()
+                    resources.getString(R.string.start_on, tvShowEntity.firstAirDate)
+                tv_item_rate.text = tvShowEntity.voteAverage.toString()
                 Glide.with(context)
-                    .load(IMAGE_URL + tvShow.posterPath)
+                    .load(IMAGE_URL + tvShowEntity.posterPath)
                     .apply {
                         RequestOptions.placeholderOf(R.drawable.ic_error)
                             .error(R.drawable.ic_error)
@@ -40,7 +40,7 @@ class TvShowAdapter : RecyclerView.Adapter<TvShowAdapter.TvShowViewHolder>() {
 
                 setOnClickListener {
                     val intent = Intent(context, DetailActivity::class.java).apply {
-                        putExtra(DetailActivity.EXTRA_ID, tvShow.id)
+                        putExtra(DetailActivity.EXTRA_ID, tvShowEntity.id)
                         putExtra(DetailActivity.EXTRA_DESTINATION, TV_SHOW_DESTINATION)
                     }
                     context.startActivity(intent)

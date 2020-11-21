@@ -4,20 +4,20 @@ import com.example.moviecatalogue.data.source.remote.response.MovieGenresItem
 import com.example.moviecatalogue.data.source.remote.response.TvShowGenresItem
 
 object Helper {
-    fun getMovieGenres(responseGenre: List<MovieGenresItem>): List<String> {
+    fun getMovieGenres(responseGenre: List<MovieGenresItem>): String {
         val listGenres = ArrayList<String>()
         for (genre in responseGenre) {
             listGenres.add(genre.name)
         }
-        return listGenres
+        return genresFormatting(listGenres)
     }
 
-    fun getTvShowGenres(responseGenre: List<TvShowGenresItem>): List<String> {
+    fun getTvShowGenres(responseGenre: List<TvShowGenresItem>): String {
         val listGenres = ArrayList<String>()
         for (genre in responseGenre) {
             listGenres.add(genre.name)
         }
-        return listGenres
+        return genresFormatting(listGenres)
     }
 
     fun runtimeFormatting(time: Int): String {

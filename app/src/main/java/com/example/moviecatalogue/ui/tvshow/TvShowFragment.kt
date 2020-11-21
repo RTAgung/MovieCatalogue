@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.moviecatalogue.R
-import com.example.moviecatalogue.data.TvShow
+import com.example.moviecatalogue.data.source.local.entity.TvShowEntity
 import com.example.moviecatalogue.ui.home.HomeViewModel
 import com.example.moviecatalogue.viewmodel.ViewModelFactory
 import kotlinx.android.synthetic.main.fragment_tv_show.*
@@ -37,7 +37,7 @@ class TvShowFragment : Fragment() {
 
             viewModel.getTrendingTvShow().observe(this, { tvShows ->
                 progress_bar_tv_show.visibility = View.GONE
-                val listTvShows = ArrayList<TvShow>()
+                val listTvShows = ArrayList<TvShowEntity>()
                 listTvShows.addAll(tvShows)
                 tvShowAdapter.listTvShows = listTvShows
             })

@@ -3,9 +3,8 @@ package com.example.moviecatalogue.data.source
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.moviecatalogue.data.Movie
-import com.example.moviecatalogue.data.TvShow
-import com.example.moviecatalogue.data.source.remote.CallbackApiListener
+import com.example.moviecatalogue.data.source.local.entity.MovieEntity
+import com.example.moviecatalogue.data.source.local.entity.TvShowEntity
 import com.example.moviecatalogue.data.source.remote.RemoteDataSource
 import com.example.moviecatalogue.data.source.remote.response.*
 import com.example.moviecatalogue.utils.Helper.getMovieGenres
@@ -14,15 +13,15 @@ import com.example.moviecatalogue.utils.Helper.getTvShowGenres
 class FakeMovieRepository(private val remoteDataSource: RemoteDataSource) :
     MovieDataSource {
 
-    override fun getTrendingMovie(): LiveData<List<Movie>> {
-        val itemResults = MutableLiveData<List<Movie>>()
-        remoteDataSource.getTrendingMovie(object :
+    override fun getTopMovies(): LiveData<List<MovieEntity>> {
+        val itemResults = MutableLiveData<List<MovieEntity>>()
+        remoteDataSource.getTopMovies(object :
             CallbackApiListener<List<TrendingMovieResultsItem>> {
             override fun onSuccess(response: List<TrendingMovieResultsItem>?) {
-                val listMovies = ArrayList<Movie>()
+                val listMovies = ArrayList<MovieEntity>()
                 if (response != null) {
                     for (itemResponse in response) {
-                        val item = Movie(
+                        val item = MovieEntity(
                             id = itemResponse.id,
                             originalTitle = itemResponse.originalTitle,
                             title = itemResponse.title,
@@ -44,15 +43,15 @@ class FakeMovieRepository(private val remoteDataSource: RemoteDataSource) :
         return itemResults
     }
 
-    override fun getTrendingTvShow(): LiveData<List<TvShow>> {
-        val itemResults = MutableLiveData<List<TvShow>>()
-        remoteDataSource.getTrendingTvShow(object :
+    override fun getTopTvShows(): LiveData<List<TvShowEntity>> {
+        val itemResults = MutableLiveData<List<TvShowEntity>>()
+        remoteDataSource.getTopTvShows(object :
             CallbackApiListener<List<TrendingTvShowResultsItem>> {
             override fun onSuccess(response: List<TrendingTvShowResultsItem>?) {
-                val listMovies = ArrayList<TvShow>()
+                val listMovies = ArrayList<TvShowEntity>()
                 if (response != null) {
                     for (itemResponse in response) {
-                        val item = TvShow(
+                        val item = TvShowEntity(
                             id = itemResponse.id,
                             originalName = itemResponse.originalName,
                             name = itemResponse.name,
@@ -74,12 +73,12 @@ class FakeMovieRepository(private val remoteDataSource: RemoteDataSource) :
         return itemResults
     }
 
-    override fun getMovie(movieId: String): LiveData<Movie> {
-        val itemResult = MutableLiveData<Movie>()
+    override fun getMovie(movieId: String): LiveData<MovieEntity> {
+        val itemResult = MutableLiveData<MovieEntity>()
         remoteDataSource.getMovie(movieId, object : CallbackApiListener<MovieResponse> {
             override fun onSuccess(response: MovieResponse?) {
                 if (response != null) {
-                    val movie = Movie(
+                    val movie = MovieEntity(
                         id = response.id,
                         originalTitle = response.originalTitle,
                         title = response.title,
@@ -103,12 +102,12 @@ class FakeMovieRepository(private val remoteDataSource: RemoteDataSource) :
         return itemResult
     }
 
-    override fun getTvShow(tvShowId: String): LiveData<TvShow> {
-        val itemResult = MutableLiveData<TvShow>()
+    override fun getTvShow(tvShowId: String): LiveData<TvShowEntity> {
+        val itemResult = MutableLiveData<TvShowEntity>()
         remoteDataSource.getTvShow(tvShowId, object : CallbackApiListener<TvShowResponse> {
             override fun onSuccess(response: TvShowResponse?) {
                 if (response != null) {
-                    val tvShow = TvShow(
+                    val tvShow = TvShowEntity(
                         id = response.id,
                         originalName = response.originalName,
                         name = response.name,

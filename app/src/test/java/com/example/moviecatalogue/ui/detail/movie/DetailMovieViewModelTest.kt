@@ -3,7 +3,7 @@ package com.example.moviecatalogue.ui.detail.movie
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
-import com.example.moviecatalogue.data.Movie
+import com.example.moviecatalogue.data.source.local.entity.MovieEntity
 import com.example.moviecatalogue.data.source.MovieRepository
 import com.example.moviecatalogue.utils.DataDummy
 import com.nhaarman.mockitokotlin2.verify
@@ -19,7 +19,7 @@ import org.mockito.junit.MockitoJUnitRunner
 
 /*
 Scenario DetailMovieViewModelTest :
-    - Memuat Detail Movie
+    - Memuat Detail MovieEntity
         - Memanipulasi data ketika pemanggilan data detail movie di kelas repository
         - Memastikan metode di kelas repository terpanggil
         - Memastikan data movie tidak null
@@ -39,7 +39,7 @@ class DetailMovieViewModelTest {
     private lateinit var movieRepository: MovieRepository
 
     @Mock
-    private lateinit var movieObserver: Observer<Movie>
+    private lateinit var movieEntityObserver: Observer<MovieEntity>
 
     @Before
     fun setUp() {
@@ -49,12 +49,12 @@ class DetailMovieViewModelTest {
 
     @Test
     fun getMovie() {
-        val movieLive = MutableLiveData<Movie>()
+        val movieLive = MutableLiveData<MovieEntity>()
         movieLive.value = dummyMovie
 
         if (dummyMovieId != null) {
             `when`(movieRepository.getMovie(dummyMovieId)).thenReturn(movieLive)
-            val movie = viewModel.getMovie().value as Movie
+            val movie = viewModel.getMovie().value as MovieEntity
             verify(movieRepository).getMovie(dummyMovieId)
 
             assertNotNull(movie)
@@ -71,8 +71,8 @@ class DetailMovieViewModelTest {
             assertEquals(dummyMovie.genres, movie.genres)
             assertEquals(dummyMovie.runtime, movie.runtime)
 
-            viewModel.getMovie().observeForever(movieObserver)
-            Mockito.verify(movieObserver).onChanged(dummyMovie)
+            viewModel.getMovie().observeForever(movieEntityObserver)
+            Mockito.verify(movieEntityObserver).onChanged(dummyMovie)
         }
     }
 }

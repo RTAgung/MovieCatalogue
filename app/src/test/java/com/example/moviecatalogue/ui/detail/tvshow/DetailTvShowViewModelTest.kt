@@ -3,7 +3,7 @@ package com.example.moviecatalogue.ui.detail.tvshow
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
-import com.example.moviecatalogue.data.TvShow
+import com.example.moviecatalogue.data.source.local.entity.TvShowEntity
 import com.example.moviecatalogue.data.source.MovieRepository
 import com.example.moviecatalogue.utils.DataDummy
 import com.nhaarman.mockitokotlin2.verify
@@ -39,7 +39,7 @@ class DetailTvShowViewModelTest {
     private lateinit var movieRepository: MovieRepository
 
     @Mock
-    private lateinit var tvShowObserver: Observer<TvShow>
+    private lateinit var tvShowEntityObserver: Observer<TvShowEntity>
 
     @Before
     fun setUp() {
@@ -49,12 +49,12 @@ class DetailTvShowViewModelTest {
 
     @Test
     fun getDetailTvShow() {
-        val tvShowLive = MutableLiveData<TvShow>()
+        val tvShowLive = MutableLiveData<TvShowEntity>()
         tvShowLive.value = dummyTvShow
 
         if (dummyTvShowId != null) {
             `when`(movieRepository.getTvShow(dummyTvShowId)).thenReturn(tvShowLive)
-            val tvShow = viewModel.getTvShow().value as TvShow
+            val tvShow = viewModel.getTvShow().value as TvShowEntity
             verify(movieRepository).getTvShow(dummyTvShowId)
 
             assertNotNull(tvShow)
@@ -71,8 +71,8 @@ class DetailTvShowViewModelTest {
             assertEquals(dummyTvShow.numberOfSeasons, tvShow.numberOfSeasons)
             assertEquals(dummyTvShow.genres, tvShow.genres)
 
-            viewModel.getTvShow().observeForever(tvShowObserver)
-            Mockito.verify(tvShowObserver).onChanged(dummyTvShow)
+            viewModel.getTvShow().observeForever(tvShowEntityObserver)
+            Mockito.verify(tvShowEntityObserver).onChanged(dummyTvShow)
         }
     }
 }

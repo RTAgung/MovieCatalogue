@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.moviecatalogue.R
-import com.example.moviecatalogue.data.Movie
+import com.example.moviecatalogue.data.source.local.entity.MovieEntity
 import com.example.moviecatalogue.ui.detail.DetailActivity
 import com.example.moviecatalogue.ui.detail.DetailActivity.Companion.EXTRA_DESTINATION
 import com.example.moviecatalogue.ui.detail.DetailActivity.Companion.EXTRA_ID
@@ -17,7 +17,7 @@ import com.example.moviecatalogue.utils.ConstantValue.IMAGE_URL
 import kotlinx.android.synthetic.main.items_film.view.*
 
 class MovieAdapter : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
-    var listMovies = ArrayList<Movie>()
+    var listMovies = ArrayList<MovieEntity>()
         set(value) {
             field.clear()
             field.addAll(value)
@@ -25,14 +25,14 @@ class MovieAdapter : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
         }
 
     class MovieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(movie: Movie) {
+        fun bind(movieEntity: MovieEntity) {
             with(itemView) {
-                tv_item_original_title.text = movie.originalTitle
-                tv_item_title.text = movie.title
-                tv_item_release.text = resources.getString(R.string.release_on, movie.releaseDate)
-                tv_item_rate.text = movie.voteAverage.toString()
+                tv_item_original_title.text = movieEntity.originalTitle
+                tv_item_title.text = movieEntity.title
+                tv_item_release.text = resources.getString(R.string.release_on, movieEntity.releaseDate)
+                tv_item_rate.text = movieEntity.voteAverage.toString()
                 Glide.with(context)
-                    .load(IMAGE_URL + movie.posterPath)
+                    .load(IMAGE_URL + movieEntity.posterPath)
                     .apply {
                         RequestOptions.placeholderOf(R.drawable.ic_error)
                             .error(R.drawable.ic_error)
@@ -41,7 +41,7 @@ class MovieAdapter : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
 
                 setOnClickListener {
                     val intent = Intent(context, DetailActivity::class.java).apply {
-                        putExtra(EXTRA_ID, movie.id)
+                        putExtra(EXTRA_ID, movieEntity.id)
                         putExtra(EXTRA_DESTINATION, MOVIE_DESTINATION)
                     }
                     context.startActivity(intent)

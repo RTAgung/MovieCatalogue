@@ -1,16 +1,16 @@
 package com.example.moviecatalogue.utils
 
-import com.example.moviecatalogue.data.Movie
-import com.example.moviecatalogue.data.TvShow
+import com.example.moviecatalogue.data.source.local.entity.MovieEntity
+import com.example.moviecatalogue.data.source.local.entity.TvShowEntity
 import com.example.moviecatalogue.data.source.remote.response.*
 
 object DataDummy {
 
-    fun generateDummyMovie(): List<Movie> {
-        val movies = ArrayList<Movie>()
+    fun generateDummyMovie(): List<MovieEntity> {
+        val movies = ArrayList<MovieEntity>()
 
         movies.add(
-            Movie(
+            MovieEntity(
                 id = "740985",
                 voteAverage = 6.8,
                 title = "Borat Subsequent Moviefilm",
@@ -22,7 +22,7 @@ object DataDummy {
             )
         )
         movies.add(
-            Movie(
+            MovieEntity(
                 id = "531219",
                 voteAverage = 7.2,
                 title = "Roald Dahl's The Witches",
@@ -34,7 +34,7 @@ object DataDummy {
             )
         )
         movies.add(
-            Movie(
+            MovieEntity(
                 id = "105",
                 voteAverage = 8.3,
                 title = "Back to the Future",
@@ -46,7 +46,7 @@ object DataDummy {
             )
         )
         movies.add(
-            Movie(
+            MovieEntity(
                 id = "590223",
                 voteAverage = 7.6,
                 title = "Love and Monsters",
@@ -58,7 +58,7 @@ object DataDummy {
             )
         )
         movies.add(
-            Movie(
+            MovieEntity(
                 id = "625568",
                 voteAverage = 6.4,
                 title = "Unhinged",
@@ -70,7 +70,7 @@ object DataDummy {
             )
         )
         movies.add(
-            Movie(
+            MovieEntity(
                 id = "560050",
                 voteAverage = 7.9,
                 title = "Over the Moon",
@@ -82,7 +82,7 @@ object DataDummy {
             )
         )
         movies.add(
-            Movie(
+            MovieEntity(
                 id = "556984",
                 voteAverage = 7.8,
                 title = "The Trial of the Chicago 7",
@@ -94,7 +94,7 @@ object DataDummy {
             )
         )
         movies.add(
-            Movie(
+            MovieEntity(
                 id = "505379",
                 voteAverage = 6.3,
                 title = "Rebecca",
@@ -106,7 +106,7 @@ object DataDummy {
             )
         )
         movies.add(
-            Movie(
+            MovieEntity(
                 id = "613504",
                 voteAverage = 6.9,
                 title = "After We Collided",
@@ -118,7 +118,7 @@ object DataDummy {
             )
         )
         movies.add(
-            Movie(
+            MovieEntity(
                 id = "575417",
                 voteAverage = 6.5,
                 title = "On the Rocks",
@@ -133,11 +133,11 @@ object DataDummy {
         return movies
     }
 
-    fun generateDummyTvShow(): List<TvShow> {
-        val tvShows = ArrayList<TvShow>()
+    fun generateDummyTvShow(): List<TvShowEntity> {
+        val tvShows = ArrayList<TvShowEntity>()
 
         tvShows.add(
-            TvShow(
+            TvShowEntity(
                 backdropPath = "/iU955nBcsc5Zr5e31eWU2xKVqHk.jpg",
                 firstAirDate = "2020-10-23",
                 id = "93785",
@@ -149,7 +149,7 @@ object DataDummy {
             )
         )
         tvShows.add(
-            TvShow(
+            TvShowEntity(
                 originalName = "The Haunting of Bly Manor",
                 id = "109958",
                 name = "The Haunting of Bly Manor",
@@ -161,7 +161,7 @@ object DataDummy {
             )
         )
         tvShows.add(
-            TvShow(
+            TvShowEntity(
                 originalName = "The Queen's Gambit",
                 id = "87739",
                 name = "The Queen's Gambit",
@@ -173,7 +173,7 @@ object DataDummy {
             )
         )
         tvShows.add(
-            TvShow(
+            TvShowEntity(
                 originalName = "The Boys",
                 id = "76479",
                 name = "The Boys",
@@ -185,7 +185,7 @@ object DataDummy {
             )
         )
         tvShows.add(
-            TvShow(
+            TvShowEntity(
                 originalName = "The Walking Dead: World Beyond",
                 id = "94305",
                 name = "The Walking Dead: World Beyond",
@@ -197,7 +197,7 @@ object DataDummy {
             )
         )
         tvShows.add(
-            TvShow(
+            TvShowEntity(
                 originalName = "Star Trek: Discovery",
                 id = "67198",
                 name = "Star Trek: Discovery",
@@ -209,7 +209,7 @@ object DataDummy {
             )
         )
         tvShows.add(
-            TvShow(
+            TvShowEntity(
                 originalName = "Fear the Walking Dead",
                 id = "62286",
                 name = "Fear the Walking Dead",
@@ -221,7 +221,7 @@ object DataDummy {
             )
         )
         tvShows.add(
-            TvShow(
+            TvShowEntity(
                 originalName = "Helstrom",
                 id = "88987",
                 name = "Helstrom",
@@ -233,7 +233,7 @@ object DataDummy {
             )
         )
         tvShows.add(
-            TvShow(
+            TvShowEntity(
                 originalName = "The Undoing",
                 id = "83851",
                 name = "The Undoing",
@@ -245,7 +245,7 @@ object DataDummy {
             )
         )
         tvShows.add(
-            TvShow(
+            TvShowEntity(
                 originalName = "La Révolution",
                 id = "99807",
                 name = "La Révolution",

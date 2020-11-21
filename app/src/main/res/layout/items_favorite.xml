@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cv_item"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/side_md"
+    android:layout_marginRight="@dimen/side_md"
+    android:orientation="vertical"
+    app:cardCornerRadius="0dp"
+    app:cardElevation="4dp"
+    app:cardMaxElevation="4dp"
+    app:cardUseCompatPadding="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/item_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_favorite_poster"
+            android:layout_width="80dp"
+            android:layout_height="120dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:src="@color/colorImage"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/tv_favorite_original_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/side_lg"
+            android:layout_marginTop="@dimen/side_lgr"
+            android:layout_marginEnd="@dimen/side_lg"
+            android:ellipsize="end"
+            android:gravity="start"
+            android:maxLines="2"
+            android:textColor="@color/colorText"
+            android:textSize="@dimen/text_lg"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/iv_favorite_poster"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Original Title" />
+
+        <TextView
+            android:id="@+id/tv_favorite_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/side_lg"
+            android:layout_marginTop="@dimen/side_sm"
+            android:layout_marginEnd="@dimen/side_lg"
+            android:ellipsize="end"
+            android:gravity="start"
+            android:maxLines="1"
+            android:minLines="1"
+            android:textColor="@color/colorText"
+            android:textSize="@dimen/text_sm"
+            android:textStyle="italic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/iv_favorite_poster"
+            app:layout_constraintTop_toBottomOf="@id/tv_favorite_original_title"
+            tools:text="Title" />
+
+        <TextView
+            android:id="@+id/tv_favorite_release"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/side_lg"
+            android:layout_marginEnd="@dimen/side_lg"
+            android:layout_marginBottom="@dimen/side_lgr"
+            android:maxLines="1"
+            android:textColor="@color/colorTextSecondary"
+            android:textSize="@dimen/text_sm"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/tv_favorite_type"
+            app:layout_constraintStart_toEndOf="@+id/iv_favorite_poster"
+            tools:text="@string/release_on" />
+
+        <TextView
+            android:id="@+id/tv_favorite_type"
+            android:layout_width="70dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="@dimen/side_sm"
+            android:layout_marginEnd="@dimen/side_lg"
+            android:layout_marginBottom="@dimen/side_lgr"
+            android:background="@drawable/type_background"
+            android:gravity="center"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/text_sm"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="TV Show" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

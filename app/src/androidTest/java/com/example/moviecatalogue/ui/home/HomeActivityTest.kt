@@ -31,7 +31,7 @@ Scenario Instrumental Testing :
 4. Menampilkan detail data tv show
     - Klik TabLayout dengan teks "TV SHOW"
     - Mengamambil string original title pada item pertama
-    - Memberi tindakan klik pada data pertama di rv_tvshow
+    - Memberi tindakan klik pada data pertama di rv_tv_show
     - Memastikan TextView untuk original title tampil sesuai dengan yang diharapkan.
  */
 

@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 def apikeyPropertiesFile = rootProject.file("apikey.properties")
 def apikeyProperties = new Properties()
@@ -58,6 +59,7 @@ dependencies {
     implementation "com.google.android.material:material:$materialVersion"
     implementation "com.github.bumptech.glide:glide:$glideVersion"
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation "androidx.paging:paging-runtime:$pagingVersion"
 
     //testing
     testImplementation "junit:junit:$junitVersion"
@@ -75,8 +77,11 @@ dependencies {
     //noinspection KtxExtensionAvailable,GradleDependency
     implementation "androidx.lifecycle:lifecycle-viewmodel:$archLifecycleVersion"
 
-    //api service
+    //data
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
     implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
     implementation "com.squareup.okhttp3:logging-interceptor:$okhttp3LoggingVersion"
+    implementation "androidx.room:room-runtime:$roomVersion"
+    kapt "androidx.room:room-compiler:$roomVersion"
+
 }

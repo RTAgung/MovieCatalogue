@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.detail.movie.DetailMovieFragment">
+    tools:context=".ui.detail.movieEntity.DetailMovieFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -139,7 +139,7 @@
             android:layout_marginTop="@dimen/side_lgr"
             android:background="@drawable/type_background"
             android:gravity="center"
-            android:text="@string/movie"
+            android:text="@string/movieEntity"
             android:textColor="@android:color/white"
             android:textSize="@dimen/text_lg"
             android:textStyle="bold"

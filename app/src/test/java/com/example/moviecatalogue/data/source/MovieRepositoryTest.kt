@@ -1,7 +1,6 @@
 package com.example.moviecatalogue.data.source
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.example.moviecatalogue.data.source.remote.CallbackApiListener
 import com.example.moviecatalogue.data.source.remote.RemoteDataSource
 import com.example.moviecatalogue.data.source.remote.response.MovieResponse
 import com.example.moviecatalogue.data.source.remote.response.TrendingMovieResultsItem
@@ -39,9 +38,9 @@ class MovieRepositoryTest {
             (invocation.arguments[0] as CallbackApiListener<List<TrendingMovieResultsItem>>)
                 .onSuccess(trendingMovieResponses)
             null
-        }.`when`(remote).getTrendingMovie(any())
-        val movies = LiveDataTestUtil.getValue(movieRepository.getTrendingMovie())
-        verify(remote).getTrendingMovie(any())
+        }.`when`(remote).getTopMovies(any())
+        val movies = LiveDataTestUtil.getValue(movieRepository.getTopMovies())
+        verify(remote).getTopMovies(any())
         assertNotNull(movies)
         assertEquals(trendingMovieResponses.size.toLong(), movies.size.toLong())
     }
@@ -52,9 +51,9 @@ class MovieRepositoryTest {
             (invocation.arguments[0] as CallbackApiListener<List<TrendingTvShowResultsItem>>)
                 .onSuccess(trendingTvShowResponses)
             null
-        }.`when`(remote).getTrendingTvShow(any())
-        val tvShows = LiveDataTestUtil.getValue(movieRepository.getTrendingTvShow())
-        verify(remote).getTrendingTvShow(any())
+        }.`when`(remote).getTopTvShows(any())
+        val tvShows = LiveDataTestUtil.getValue(movieRepository.getTopTvShows())
+        verify(remote).getTopTvShows(any())
         assertNotNull(tvShows)
         assertEquals(trendingTvShowResponses.size.toLong(), tvShows.size.toLong())
     }

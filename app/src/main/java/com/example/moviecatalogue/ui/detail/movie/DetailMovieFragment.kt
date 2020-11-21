@@ -11,11 +11,10 @@ import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.moviecatalogue.R
-import com.example.moviecatalogue.data.Movie
+import com.example.moviecatalogue.data.source.local.entity.MovieEntity
 import com.example.moviecatalogue.ui.detail.DetailActivity
 import com.example.moviecatalogue.ui.detail.DetailActivity.Companion.EXTRA_ID
 import com.example.moviecatalogue.utils.ConstantValue.IMAGE_URL
-import com.example.moviecatalogue.utils.Helper.genresFormatting
 import com.example.moviecatalogue.utils.Helper.runtimeFormatting
 import com.example.moviecatalogue.viewmodel.ViewModelFactory
 import kotlinx.android.synthetic.main.fragment_detail_movie.*
@@ -57,22 +56,22 @@ class DetailMovieFragment : Fragment() {
         }
     }
 
-    private fun populateMovie(movie: Movie?) {
-        if (movie != null) {
-            tv_original_title.text = movie.originalTitle
-            tv_title.text = movie.title
-            tv_rate_avg.text = movie.voteAverage.toString()
-            val rateCount = "(${movie.voteCount}) "
+    private fun populateMovie(movieEntity: MovieEntity?) {
+        if (movieEntity != null) {
+            tv_original_title.text = movieEntity.originalTitle
+            tv_title.text = movieEntity.title
+            tv_rate_avg.text = movieEntity.voteAverage.toString()
+            val rateCount = "(${movieEntity.voteCount}) "
             tv_rate_count.text = rateCount
-            tv_release.text = resources.getString(R.string.release_on_detail, movie.releaseDate)
-            tv_runtime.text = movie.runtime?.let { runtimeFormatting(it) }
-            tv_tagline.text = movie.tagline
-            tv_genres.text = movie.genres?.let { genresFormatting(it) }
-            tv_overview.text = movie.overview
+            tv_release.text = resources.getString(R.string.release_on_detail, movieEntity.releaseDate)
+            tv_runtime.text = movieEntity.runtime?.let { runtimeFormatting(it) }
+            tv_tagline.text = movieEntity.tagline
+            tv_genres.text = movieEntity.genres
+            tv_overview.text = movieEntity.overview
 
             context?.let {
                 Glide.with(it)
-                    .load(IMAGE_URL + movie.backdropPath)
+                    .load(IMAGE_URL + movieEntity.backdropPath)
                     .apply {
                         RequestOptions.placeholderOf(R.drawable.ic_error)
                             .error(R.drawable.ic_error)
@@ -81,7 +80,7 @@ class DetailMovieFragment : Fragment() {
             }
 
             iv_share.setOnClickListener {
-                onShareClicked(movie.originalTitle)
+                onShareClicked(movieEntity.originalTitle)
             }
         }
     }
