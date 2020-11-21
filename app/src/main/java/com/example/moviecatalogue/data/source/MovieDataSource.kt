@@ -16,7 +16,7 @@ interface MovieDataSource {
 
     fun getTvShow(tvShowId: String): LiveData<Resource<TvShowEntity>>
 
-    fun getFavorite(): LiveData<PagedList<FavoriteEntity>>
+    fun getFavorites(): LiveData<PagedList<FavoriteEntity>>
 
     fun insertFavorite(favorite: FavoriteEntity)
 

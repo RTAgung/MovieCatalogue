@@ -159,7 +159,7 @@ class MovieRepository private constructor(
         }.asLiveData()
     }
 
-    override fun getFavorite(): LiveData<PagedList<FavoriteEntity>> {
+    override fun getFavorites(): LiveData<PagedList<FavoriteEntity>> {
         val config = PagedList.Config.Builder()
             .setEnablePlaceholders(false)
             .setInitialLoadSizeHint(4)

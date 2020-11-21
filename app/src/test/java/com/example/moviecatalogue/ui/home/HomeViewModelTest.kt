@@ -67,13 +67,13 @@ class HomeViewModelTest {
         moviesLive.value = dummyMovies
 
         `when`(movieRepository.getTopMovies()).thenReturn(moviesLive)
-        val movies = viewModel.getTrendingMovie().value
+        val movies = viewModel.getTopMovies().value
         verify(movieRepository).getTopMovies()
         assertNotNull(movies)
         assertEquals(dummyFirstMovie, movies?.get(0))
         assertEquals(dummyMovieSize, movies?.size)
 
-        viewModel.getTrendingMovie().observeForever(movieEntityObserver)
+        viewModel.getTopMovies().observeForever(movieEntityObserver)
         verify(movieEntityObserver).onChanged(dummyMovies)
     }
 
@@ -84,13 +84,13 @@ class HomeViewModelTest {
         tvShowsLive.value = dummyTvShows
 
         `when`(movieRepository.getTopTvShows()).thenReturn(tvShowsLive)
-        val tvShows = viewModel.getTrendingTvShow().value
+        val tvShows = viewModel.getTopTvShows().value
         verify(movieRepository).getTopTvShows()
         assertNotNull(tvShows)
         assertEquals(dummyFirstTvShow, tvShows?.get(0))
         assertEquals(dummyTvShowSize, tvShows?.size)
 
-        viewModel.getTrendingTvShow().observeForever(tvShowEntityObserver)
+        viewModel.getTopTvShows().observeForever(tvShowEntityObserver)
         verify(tvShowEntityObserver).onChanged(dummyTvShows)
     }
 }

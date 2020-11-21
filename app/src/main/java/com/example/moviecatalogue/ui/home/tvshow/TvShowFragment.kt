@@ -1,4 +1,4 @@
-package com.example.moviecatalogue.ui.movie
+package com.example.moviecatalogue.ui.home.tvshow
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,24 +8,24 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.moviecatalogue.R
-import com.example.moviecatalogue.data.source.local.entity.MovieEntity
+import com.example.moviecatalogue.data.source.local.entity.TvShowEntity
 import com.example.moviecatalogue.ui.home.HomeViewModel
 import com.example.moviecatalogue.viewmodel.ViewModelFactory
-import kotlinx.android.synthetic.main.fragment_movie.*
+import kotlinx.android.synthetic.main.fragment_tv_show.*
 
-class MovieFragment : Fragment() {
+class TvShowFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_movie, container, false)
+        return inflater.inflate(R.layout.fragment_tv_show, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         if (activity != null) {
-            progress_bar_movie.visibility = View.VISIBLE
+            progress_bar_tv_show.visibility = View.VISIBLE
 
             val factory = ViewModelFactory.getInstance()
             val viewModel = ViewModelProvider(
@@ -33,19 +33,19 @@ class MovieFragment : Fragment() {
                 factory
             )[HomeViewModel::class.java]
 
-            val movieAdapter = MovieAdapter()
+            val tvShowAdapter = TvShowAdapter()
 
-            viewModel.getTrendingMovie().observe(this, { movies ->
-                progress_bar_movie.visibility = View.GONE
-                val listMovies = ArrayList<MovieEntity>()
-                listMovies.addAll(movies)
-                movieAdapter.listMovies = listMovies
+            viewModel.getTopTvShows().observe(this, { tvShows ->
+                progress_bar_tv_show.visibility = View.GONE
+                val listTvShows = ArrayList<TvShowEntity>()
+                listTvShows.addAll(tvShows)
+                tvShowAdapter.listTvShows = listTvShows
             })
 
-            with(rv_movie) {
+            with(rv_tv_show) {
                 layoutManager = LinearLayoutManager(context)
                 setHasFixedSize(true)
-                adapter = movieAdapter
+                adapter = tvShowAdapter
             }
         }
     }
