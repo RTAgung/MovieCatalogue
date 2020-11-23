@@ -9,7 +9,7 @@ import androidx.room.PrimaryKey
 data class FavoriteEntity(
     @PrimaryKey
     @NonNull
-    @ColumnInfo(name = "id") var id: String? = null,
+    @ColumnInfo(name = "id") var id: String,
     @ColumnInfo(name = "originalTitle") var originalTitle: String? = null,
     @ColumnInfo(name = "title") var title: String? = null,
     @ColumnInfo(name = "releaseDate") var releaseDate: String? = null,

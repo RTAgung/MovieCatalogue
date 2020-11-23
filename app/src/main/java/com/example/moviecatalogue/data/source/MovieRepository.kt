@@ -120,7 +120,8 @@ class MovieRepository private constructor(
                     voteAverage = data.voteAverage,
                     tagline = data.tagline,
                     genres = getMovieGenres(data.genres),
-                    backdropPath = data.backdropPath
+                    backdropPath = data.backdropPath,
+                    posterPath = data.posterPath
                 )
 
                 localDataSource.setDetailMovie(movie)
@@ -151,7 +152,8 @@ class MovieRepository private constructor(
                     voteCount = data.voteCount,
                     voteAverage = data.voteAverage,
                     genres = getTvShowGenres(data.genres),
-                    backdropPath = data.backdropPath
+                    backdropPath = data.backdropPath,
+                    posterPath = data.posterPath
                 )
 
                 localDataSource.setDetailTvShow(tvShow)
@@ -168,6 +170,9 @@ class MovieRepository private constructor(
         return LivePagedListBuilder(localDataSource.getFavorites(), config).build()
     }
 
+    override fun checkFavorite(favoriteId: String): LiveData<Int> =
+        localDataSource.checkFavorite(favoriteId)
+
     override fun insertFavorite(favorite: FavoriteEntity) =
         appExecutors.diskIO().execute { localDataSource.insertFavorite(favorite) }
 
@@ -182,9 +187,15 @@ class MovieRepository private constructor(
             remoteData: RemoteDataSource,
             localData: LocalDataSource,
             appExecutors: AppExecutors
-        ): MovieRepository =
-            instance ?: synchronized(this) {
-                instance ?: MovieRepository(remoteData, localData, appExecutors)
+        ): MovieRepository {
+            if (instance == null) {
+                synchronized(this) {
+                    if (instance == null) {
+                        instance = MovieRepository(remoteData, localData, appExecutors)
+                    }
+                }
             }
+            return instance as MovieRepository
+        }
     }
 }

@@ -20,13 +20,19 @@ abstract class MovieDatabase : RoomDatabase() {
         @Volatile
         private var INSTANCE: MovieDatabase? = null
 
-        fun getInstance(context: Context): MovieDatabase =
-            INSTANCE ?: synchronized(this) {
-                INSTANCE ?: Room.databaseBuilder(
-                    context.applicationContext,
-                    MovieDatabase::class.java,
-                    "Movies.db"
-                ).build()
+        fun getInstance(context: Context): MovieDatabase {
+            if (INSTANCE == null) {
+                synchronized(this) {
+                    if (INSTANCE == null) {
+                        INSTANCE = Room.databaseBuilder(
+                            context.applicationContext,
+                            MovieDatabase::class.java,
+                            "MovieCatalogue.db"
+                        ).build()
+                    }
+                }
             }
+            return INSTANCE as MovieDatabase
+        }
     }
 }

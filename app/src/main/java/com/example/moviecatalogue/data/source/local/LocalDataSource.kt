@@ -1,11 +1,14 @@
 package com.example.moviecatalogue.data.source.local
 
+import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.paging.DataSource
+import androidx.room.Room
 import com.example.moviecatalogue.data.source.local.entity.FavoriteEntity
 import com.example.moviecatalogue.data.source.local.entity.MovieEntity
 import com.example.moviecatalogue.data.source.local.entity.TvShowEntity
 import com.example.moviecatalogue.data.source.local.room.MovieDao
+import com.example.moviecatalogue.data.source.local.room.MovieDatabase
 
 class LocalDataSource private constructor(private val movieDao: MovieDao) {
 
@@ -31,6 +34,8 @@ class LocalDataSource private constructor(private val movieDao: MovieDao) {
 
     fun getFavorites(): DataSource.Factory<Int, FavoriteEntity> = movieDao.getFavorites()
 
+    fun checkFavorite(favoriteId: String): LiveData<Int> = movieDao.checkFavorite(favoriteId)
+
     fun insertFavorite(favorite: FavoriteEntity) = movieDao.insertFavorite(favorite)
 
     fun deleteFavorite(favorite: FavoriteEntity) = movieDao.deleteFavorite(favorite)
@@ -38,7 +43,11 @@ class LocalDataSource private constructor(private val movieDao: MovieDao) {
     companion object {
         private var INSTANCE: LocalDataSource? = null
 
-        fun getInstance(movieDao: MovieDao): LocalDataSource =
-            INSTANCE ?: LocalDataSource(movieDao)
+        fun getInstance(movieDao: MovieDao): LocalDataSource {
+            if (INSTANCE == null) {
+                INSTANCE = LocalDataSource(movieDao)
+            }
+            return INSTANCE as LocalDataSource
+        }
     }
 }

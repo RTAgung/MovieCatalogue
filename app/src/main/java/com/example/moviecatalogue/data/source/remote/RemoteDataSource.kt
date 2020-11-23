@@ -2,6 +2,8 @@ package com.example.moviecatalogue.data.source.remote
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.moviecatalogue.data.source.local.LocalDataSource
+import com.example.moviecatalogue.data.source.local.room.MovieDao
 import com.example.moviecatalogue.data.source.remote.response.*
 import com.example.moviecatalogue.data.source.remote.service.MovieApiConfig
 import com.example.moviecatalogue.utils.EspressoIdlingResource
@@ -125,9 +127,15 @@ class RemoteDataSource private constructor(private val apiConfig: MovieApiConfig
         @Volatile
         private var instance: RemoteDataSource? = null
 
-        fun getInstance(apiConfig: MovieApiConfig): RemoteDataSource =
-            instance ?: synchronized(this) {
-                instance ?: RemoteDataSource(apiConfig)
+        fun getInstance(apiConfig: MovieApiConfig): RemoteDataSource {
+            if (instance == null) {
+                synchronized(this) {
+                    if (instance == null) {
+                        instance = RemoteDataSource(apiConfig)
+                    }
+                }
             }
+            return instance as RemoteDataSource
+        }
     }
 }

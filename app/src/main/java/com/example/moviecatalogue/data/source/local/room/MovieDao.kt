@@ -7,6 +7,7 @@ import com.example.moviecatalogue.data.source.local.entity.FavoriteEntity
 import com.example.moviecatalogue.data.source.local.entity.MovieEntity
 import com.example.moviecatalogue.data.source.local.entity.TvShowEntity
 
+@Dao
 interface MovieDao {
     @Query("SELECT * FROM movie")
     fun getTopMovies(): DataSource.Factory<Int, MovieEntity>
@@ -40,6 +41,9 @@ interface MovieDao {
 
     @Query("SELECT * FROM favorite")
     fun getFavorites(): DataSource.Factory<Int, FavoriteEntity>
+
+    @Query("SELECT 1 FROM favorite WHERE id = :favoriteId")
+    fun checkFavorite(favoriteId: String): LiveData<Int>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertFavorite(favorite: FavoriteEntity)

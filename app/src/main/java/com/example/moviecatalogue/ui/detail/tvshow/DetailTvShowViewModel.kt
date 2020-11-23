@@ -21,35 +21,4 @@ class DetailTvShowViewModel(private val movieRepository: MovieRepository) : View
         Transformations.switchMap(tvShowId) { mTvShowId ->
             movieRepository.getTvShow(mTvShowId)
         }
-
-    fun insertFavorite() {
-        val favorite = getFavorite()
-        if (favorite != null)
-            movieRepository.insertFavorite(favorite)
-    }
-
-    fun deleteFavorite() {
-        val favorite = getFavorite()
-        if (favorite != null)
-            movieRepository.deleteFavorite(favorite)
-    }
-
-    private fun getFavorite(): FavoriteEntity? {
-        var favorite: FavoriteEntity? = null
-        val tvShowResource = tvShow.value
-        if (tvShowResource != null) {
-            val tvShow = tvShowResource.data
-            if (tvShow != null) {
-                favorite = FavoriteEntity(
-                    id = tvShow.id,
-                    title = tvShow.name,
-                    originalTitle = tvShow.originalName,
-                    releaseDate = tvShow.firstAirDate,
-                    posterPath = tvShow.posterPath,
-                    type = TYPE_TV_SHOW
-                )
-            }
-        }
-        return favorite
-    }
 }

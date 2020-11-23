@@ -21,35 +21,4 @@ class DetailMovieViewModel(private val movieRepository: MovieRepository) : ViewM
         Transformations.switchMap(movieId) { mMovieId ->
             movieRepository.getMovie(mMovieId)
         }
-
-    fun insertFavorite() {
-        val favorite = getFavorite()
-        if (favorite != null)
-            movieRepository.insertFavorite(favorite)
-    }
-
-    fun deleteFavorite() {
-        val favorite = getFavorite()
-        if (favorite != null)
-            movieRepository.deleteFavorite(favorite)
-    }
-
-    private fun getFavorite(): FavoriteEntity? {
-        var favorite: FavoriteEntity? = null
-        val movieResource = movie.value
-        if (movieResource != null) {
-            val movie = movieResource.data
-            if (movie != null) {
-                favorite = FavoriteEntity(
-                    id = movie.id,
-                    title = movie.title,
-                    originalTitle = movie.originalTitle,
-                    releaseDate = movie.releaseDate,
-                    posterPath = movie.posterPath,
-                    type = ConstantValue.TYPE_MOVIE
-                )
-            }
-        }
-        return favorite
-    }
 }

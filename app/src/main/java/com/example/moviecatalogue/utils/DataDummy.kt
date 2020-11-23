@@ -260,11 +260,11 @@ object DataDummy {
         return tvShows
     }
 
-    fun generateRemoteDummyTrendingMovie(): List<TrendingMovieResultsItem> {
-        val movies = ArrayList<TrendingMovieResultsItem>()
+    fun generateRemoteDummyTrendingMovie(): List<TopMovieResultsItem> {
+        val movies = ArrayList<TopMovieResultsItem>()
 
         movies.add(
-            TrendingMovieResultsItem(
+            TopMovieResultsItem(
                 id = "740985",
                 voteAverage = 6.8,
                 voteCount = 468,
@@ -277,7 +277,7 @@ object DataDummy {
             )
         )
         movies.add(
-            TrendingMovieResultsItem(
+            TopMovieResultsItem(
                 id = "531219",
                 voteAverage = 7.2,
                 voteCount = 4628,
@@ -290,7 +290,7 @@ object DataDummy {
             )
         )
         movies.add(
-            TrendingMovieResultsItem(
+            TopMovieResultsItem(
                 id = "105",
                 voteAverage = 8.3,
                 voteCount = 88,
@@ -303,7 +303,7 @@ object DataDummy {
             )
         )
         movies.add(
-            TrendingMovieResultsItem(
+            TopMovieResultsItem(
                 id = "590223",
                 voteAverage = 7.6,
                 voteCount = 123,
@@ -316,7 +316,7 @@ object DataDummy {
             )
         )
         movies.add(
-            TrendingMovieResultsItem(
+            TopMovieResultsItem(
                 id = "625568",
                 voteAverage = 6.4,
                 voteCount = 9,
@@ -329,7 +329,7 @@ object DataDummy {
             )
         )
         movies.add(
-            TrendingMovieResultsItem(
+            TopMovieResultsItem(
                 id = "560050",
                 voteAverage = 7.9,
                 voteCount = 27,
@@ -342,7 +342,7 @@ object DataDummy {
             )
         )
         movies.add(
-            TrendingMovieResultsItem(
+            TopMovieResultsItem(
                 id = "556984",
                 voteAverage = 7.8,
                 voteCount = 738,
@@ -355,7 +355,7 @@ object DataDummy {
             )
         )
         movies.add(
-            TrendingMovieResultsItem(
+            TopMovieResultsItem(
                 id = "505379",
                 voteAverage = 6.3,
                 voteCount = 2352,
@@ -368,7 +368,7 @@ object DataDummy {
             )
         )
         movies.add(
-            TrendingMovieResultsItem(
+            TopMovieResultsItem(
                 id = "613504",
                 voteAverage = 6.9,
                 voteCount = 987,
@@ -381,7 +381,7 @@ object DataDummy {
             )
         )
         movies.add(
-            TrendingMovieResultsItem(
+            TopMovieResultsItem(
                 id = "575417",
                 voteAverage = 6.5,
                 voteCount = 33,
@@ -397,11 +397,11 @@ object DataDummy {
         return movies
     }
 
-    fun generateRemoteDummyTrendingTvShow(): List<TrendingTvShowResultsItem> {
-        val tvShows = ArrayList<TrendingTvShowResultsItem>()
+    fun generateRemoteDummyTrendingTvShow(): List<TopTvShowResultsItem> {
+        val tvShows = ArrayList<TopTvShowResultsItem>()
 
         tvShows.add(
-            TrendingTvShowResultsItem(
+            TopTvShowResultsItem(
                 backdropPath = "/iU955nBcsc5Zr5e31eWU2xKVqHk.jpg",
                 firstAirDate = "2020-10-23",
                 id = "93785",
@@ -414,7 +414,7 @@ object DataDummy {
             )
         )
         tvShows.add(
-            TrendingTvShowResultsItem(
+            TopTvShowResultsItem(
                 originalName = "The Haunting of Bly Manor",
                 id = "109958",
                 name = "The Haunting of Bly Manor",
@@ -427,7 +427,7 @@ object DataDummy {
             )
         )
         tvShows.add(
-            TrendingTvShowResultsItem(
+            TopTvShowResultsItem(
                 originalName = "The Queen's Gambit",
                 id = "87739",
                 name = "The Queen's Gambit",
@@ -440,7 +440,7 @@ object DataDummy {
             )
         )
         tvShows.add(
-            TrendingTvShowResultsItem(
+            TopTvShowResultsItem(
                 originalName = "The Boys",
                 id = "76479",
                 name = "The Boys",
@@ -453,7 +453,7 @@ object DataDummy {
             )
         )
         tvShows.add(
-            TrendingTvShowResultsItem(
+            TopTvShowResultsItem(
                 originalName = "The Walking Dead: World Beyond",
                 id = "94305",
                 name = "The Walking Dead: World Beyond",
@@ -466,7 +466,7 @@ object DataDummy {
             )
         )
         tvShows.add(
-            TrendingTvShowResultsItem(
+            TopTvShowResultsItem(
                 originalName = "Star Trek: Discovery",
                 id = "67198",
                 name = "Star Trek: Discovery",
@@ -479,7 +479,7 @@ object DataDummy {
             )
         )
         tvShows.add(
-            TrendingTvShowResultsItem(
+            TopTvShowResultsItem(
                 originalName = "Fear the Walking Dead",
                 id = "62286",
                 name = "Fear the Walking Dead",
@@ -492,7 +492,7 @@ object DataDummy {
             )
         )
         tvShows.add(
-            TrendingTvShowResultsItem(
+            TopTvShowResultsItem(
                 originalName = "Helstrom",
                 id = "88987",
                 name = "Helstrom",
@@ -505,7 +505,7 @@ object DataDummy {
             )
         )
         tvShows.add(
-            TrendingTvShowResultsItem(
+            TopTvShowResultsItem(
                 originalName = "The Undoing",
                 id = "83851",
                 name = "The Undoing",
@@ -518,7 +518,7 @@ object DataDummy {
             )
         )
         tvShows.add(
-            TrendingTvShowResultsItem(
+            TopTvShowResultsItem(
                 originalName = "La Révolution",
                 id = "99807",
                 name = "La Révolution",

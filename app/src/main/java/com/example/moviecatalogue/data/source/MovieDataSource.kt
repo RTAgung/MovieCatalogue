@@ -18,6 +18,8 @@ interface MovieDataSource {
 
     fun getFavorites(): LiveData<PagedList<FavoriteEntity>>
 
+    fun checkFavorite(favoriteId: String): LiveData<Int>
+
     fun insertFavorite(favorite: FavoriteEntity)
 
     fun deleteFavorite(favorite: FavoriteEntity)

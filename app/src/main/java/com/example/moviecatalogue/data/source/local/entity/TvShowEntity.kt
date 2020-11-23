@@ -9,7 +9,7 @@ import androidx.room.PrimaryKey
 data class TvShowEntity(
     @PrimaryKey
     @NonNull
-    @ColumnInfo(name = "id") var id: String? = null,
+    @ColumnInfo(name = "id") var id: String,
     @ColumnInfo(name = "name") var name: String? = null,
     @ColumnInfo(name = "originalName") var originalName: String? = null,
     @ColumnInfo(name = "overview") var overview: String? = null,
