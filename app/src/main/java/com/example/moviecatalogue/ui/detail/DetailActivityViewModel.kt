@@ -9,7 +9,6 @@ import com.example.moviecatalogue.data.source.MovieRepository
 import com.example.moviecatalogue.data.source.local.entity.FavoriteEntity
 import com.example.moviecatalogue.data.source.local.entity.MovieEntity
 import com.example.moviecatalogue.data.source.local.entity.TvShowEntity
-import com.example.moviecatalogue.utils.ConstantValue
 import com.example.moviecatalogue.utils.ConstantValue.TYPE_MOVIE
 import com.example.moviecatalogue.utils.ConstantValue.TYPE_TV_SHOW
 import com.example.moviecatalogue.vo.Resource
@@ -63,7 +62,7 @@ class DetailActivityViewModel(private val movieRepository: MovieRepository) : Vi
                         originalTitle = tvShow.originalName,
                         releaseDate = tvShow.firstAirDate,
                         posterPath = tvShow.posterPath,
-                        type = ConstantValue.TYPE_TV_SHOW
+                        type = TYPE_TV_SHOW
                     )
                 }
             }
@@ -80,7 +79,7 @@ class DetailActivityViewModel(private val movieRepository: MovieRepository) : Vi
                         originalTitle = movie.originalTitle,
                         releaseDate = movie.releaseDate,
                         posterPath = movie.posterPath,
-                        type = ConstantValue.TYPE_MOVIE
+                        type = TYPE_MOVIE
                     )
                     Log.d("ERROR 3", favorite.toString())
                 }

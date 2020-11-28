@@ -2,8 +2,6 @@ package com.example.moviecatalogue.data.source.remote
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.moviecatalogue.data.source.local.LocalDataSource
-import com.example.moviecatalogue.data.source.local.room.MovieDao
 import com.example.moviecatalogue.data.source.remote.response.*
 import com.example.moviecatalogue.data.source.remote.service.MovieApiConfig
 import com.example.moviecatalogue.utils.EspressoIdlingResource

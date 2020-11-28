@@ -1,14 +1,11 @@
 package com.example.moviecatalogue.data.source.local
 
-import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.paging.DataSource
-import androidx.room.Room
 import com.example.moviecatalogue.data.source.local.entity.FavoriteEntity
 import com.example.moviecatalogue.data.source.local.entity.MovieEntity
 import com.example.moviecatalogue.data.source.local.entity.TvShowEntity
 import com.example.moviecatalogue.data.source.local.room.MovieDao
-import com.example.moviecatalogue.data.source.local.room.MovieDatabase
 
 class LocalDataSource private constructor(private val movieDao: MovieDao) {
 

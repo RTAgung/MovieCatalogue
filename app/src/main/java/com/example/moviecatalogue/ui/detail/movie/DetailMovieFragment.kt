@@ -5,25 +5,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ProgressBar
-import android.widget.Toast
 import androidx.core.app.ShareCompat
-import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.moviecatalogue.R
 import com.example.moviecatalogue.data.source.local.entity.MovieEntity
-import com.example.moviecatalogue.ui.detail.DetailActivity
-import com.example.moviecatalogue.ui.detail.DetailActivity.Companion.EXTRA_ID
 import com.example.moviecatalogue.utils.ConstantValue.IMAGE_URL
 import com.example.moviecatalogue.utils.Helper.runtimeFormatting
-import com.example.moviecatalogue.viewmodel.ViewModelFactory
-import com.example.moviecatalogue.vo.Status
 import kotlinx.android.synthetic.main.fragment_detail_movie.*
 
-class DetailMovieFragment() : Fragment() {
+class DetailMovieFragment : Fragment() {
     private lateinit var movie: MovieEntity
-    private lateinit var progress: ProgressBar
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

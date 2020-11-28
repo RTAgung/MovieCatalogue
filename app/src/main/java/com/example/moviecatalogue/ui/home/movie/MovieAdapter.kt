@@ -11,7 +11,6 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.moviecatalogue.R
 import com.example.moviecatalogue.data.source.local.entity.MovieEntity
-import com.example.moviecatalogue.data.source.local.entity.TvShowEntity
 import com.example.moviecatalogue.ui.detail.DetailActivity
 import com.example.moviecatalogue.ui.detail.DetailActivity.Companion.EXTRA_DESTINATION
 import com.example.moviecatalogue.ui.detail.DetailActivity.Companion.EXTRA_ID
