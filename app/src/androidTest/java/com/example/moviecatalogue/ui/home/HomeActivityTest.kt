@@ -3,6 +3,7 @@ package com.example.moviecatalogue.ui.home
 import androidx.recyclerview.widget.RecyclerView
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.IdlingRegistry
+import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.RecyclerViewActions
@@ -36,8 +37,7 @@ Scenario Instrumental Testing :
  */
 
 class HomeActivityTest {
-    private lateinit var movieTitle: String
-    private lateinit var tvShowTitle: String
+    private lateinit var title: String
 
     @get:Rule
     var activityRule = ActivityTestRule(HomeActivity::class.java)
@@ -70,27 +70,52 @@ class HomeActivityTest {
     }
 
     @Test
-    fun loadDetailMovie() {
-        onView(withId(R.id.rv_movie)).also {
-            movieTitle = TitleUtil.getMovieTitle(it, 0)
+    fun loadFavorites() {
+        onView(withId(R.id.rv_movie)).perform(
+            RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(
+                0,
+                click()
+            )
+        )
+        onView(withId(R.id.action_favorite)).perform(click())
+        onView(isRoot()).perform(ViewActions.pressBack())
+
+        onView(withText(activityRule.activity.resources.getString(R.string.favorite))).perform(click())
+        onView(withId(R.id.rv_favorite)).check(matches(isDisplayed()))
+        onView(withId(R.id.rv_favorite)).also {
+            title = TitleUtil.getFavoriteTitle(it, 0)
         }.perform(
             RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click())
         )
 
         onView(withId(R.id.tv_original_title)).check(matches(isDisplayed()))
-        onView(withId(R.id.tv_original_title)).check(matches(withText(movieTitle)))
+        onView(withId(R.id.tv_original_title)).check(matches(withText(title)))
+        onView(withId(R.id.action_favorite)).perform(click())
+        onView(isRoot()).perform(ViewActions.pressBack())
+    }
+
+    @Test
+    fun loadDetailMovie() {
+        onView(withId(R.id.rv_movie)).also {
+            title = TitleUtil.getMovieTitle(it, 0)
+        }.perform(
+            RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click())
+        )
+
+        onView(withId(R.id.tv_original_title)).check(matches(isDisplayed()))
+        onView(withId(R.id.tv_original_title)).check(matches(withText(title)))
     }
 
     @Test
     fun loadDetailTvShow() {
         onView(withText(activityRule.activity.resources.getString(R.string.tv_show))).perform(click())
         onView(withId(R.id.rv_tv_show)).also {
-            tvShowTitle = TitleUtil.getTvShowTitle(it, 0)
+            title = TitleUtil.getTvShowTitle(it, 0)
         }.perform(
             RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click())
         )
 
         onView(withId(R.id.tv_original_title)).check(matches(isDisplayed()))
-        onView(withId(R.id.tv_original_title)).check(matches(withText(tvShowTitle)))
+        onView(withId(R.id.tv_original_title)).check(matches(withText(title)))
     }
 }

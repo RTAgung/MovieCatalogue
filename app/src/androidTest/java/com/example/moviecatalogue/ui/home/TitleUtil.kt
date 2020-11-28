@@ -55,4 +55,26 @@ object TitleUtil {
         })
         return tvShowTitle
     }
+
+    fun getFavoriteTitle(matcher: ViewInteraction, position: Int): String {
+        var favoriteTitle = String()
+        matcher.perform(object : ViewAction {
+            override fun getConstraints(): Matcher<View> {
+                return ViewMatchers.isAssignableFrom(RecyclerView::class.java)
+            }
+
+            override fun getDescription(): String {
+                return "Title of current RecyclerView"
+            }
+
+            override fun perform(uiController: UiController, view: View) {
+                val rv = view as RecyclerView
+                favoriteTitle =
+                    rv.findViewHolderForAdapterPosition(position)?.itemView?.findViewById<TextView>(
+                        R.id.tv_favorite_original_title
+                    )?.text.toString()
+            }
+        })
+        return favoriteTitle
+    }
 }
