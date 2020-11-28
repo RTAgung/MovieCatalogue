@@ -27,6 +27,7 @@ class DetailActivity : AppCompatActivity() {
 
     private var stateBoolean = false
     private var menu: Menu? = null
+    private var isLoading = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,11 +55,13 @@ class DetailActivity : AppCompatActivity() {
                             Status.LOADING -> progress_bar_detail.visibility = View.VISIBLE
                             Status.SUCCESS -> {
                                 progress_bar_detail.visibility = View.GONE
+                                isLoading = false
                                 if (movie.data != null)
                                     showFragment(DetailMovieFragment.getInstance(movie.data))
                             }
                             Status.ERROR -> {
                                 progress_bar_detail.visibility = View.GONE
+                                isLoading = false
                                 Toast.makeText(
                                     this,
                                     resources.getString(R.string.error_message),
@@ -75,11 +78,13 @@ class DetailActivity : AppCompatActivity() {
                             Status.LOADING -> progress_bar_detail.visibility = View.VISIBLE
                             Status.SUCCESS -> {
                                 progress_bar_detail.visibility = View.GONE
+                                isLoading = false
                                 if (tvShow.data != null)
                                     showFragment(DetailTvShowFragment.getInstance(tvShow.data))
                             }
                             Status.ERROR -> {
                                 progress_bar_detail.visibility = View.GONE
+                                isLoading = false
                                 Toast.makeText(
                                     this,
                                     resources.getString(R.string.error_message),
@@ -121,7 +126,7 @@ class DetailActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             android.R.id.home -> finish()
-            R.id.action_favorite -> {
+            R.id.action_favorite -> if (!isLoading) {
                 if (stateBoolean)
                     viewModel.deleteFavorite()
                 else
