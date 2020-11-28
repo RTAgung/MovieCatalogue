@@ -98,12 +98,18 @@ class MovieRepository private constructor(
     }
 
     override fun getMovie(movieId: String): LiveData<Resource<MovieEntity>> {
+        var codeNull = 0
         return object : NetworkBoundResource<MovieEntity, MovieResponse>(appExecutors) {
             override fun loadFromDB(): LiveData<MovieEntity> =
                 localDataSource.getMovieById(movieId)
 
-            override fun shouldFetch(data: MovieEntity?): Boolean =
-                data?.genres == null || data.runtime == null
+            override fun shouldFetch(data: MovieEntity?): Boolean {
+                if (data == null)
+                    codeNull = 1
+                else if (data.genres == null || data.runtime == null)
+                    codeNull = 2
+                return data?.genres == null || data.runtime == null
+            }
 
             override fun createCall(): LiveData<ApiResponse<MovieResponse>> =
                 remoteDataSource.getMovie(movieId)
@@ -124,18 +130,27 @@ class MovieRepository private constructor(
                     posterPath = data.posterPath
                 )
 
-                localDataSource.setDetailMovie(movie)
+                if (codeNull == 1)
+                    localDataSource.insertMovies(movie)
+                else if (codeNull == 2)
+                    localDataSource.setDetailMovie(movie)
             }
         }.asLiveData()
     }
 
     override fun getTvShow(tvShowId: String): LiveData<Resource<TvShowEntity>> {
+        var codeNull = 0
         return object : NetworkBoundResource<TvShowEntity, TvShowResponse>(appExecutors) {
             override fun loadFromDB(): LiveData<TvShowEntity> =
                 localDataSource.getTvShowById(tvShowId)
 
-            override fun shouldFetch(data: TvShowEntity?): Boolean =
-                data?.genres == null || data.numberOfEpisodes == null
+            override fun shouldFetch(data: TvShowEntity?): Boolean {
+                if (data == null)
+                    codeNull = 1
+                else if (data.genres == null || data.numberOfEpisodes == null)
+                    codeNull = 2
+                return data?.genres == null || data.numberOfEpisodes == null
+            }
 
             override fun createCall(): LiveData<ApiResponse<TvShowResponse>> =
                 remoteDataSource.getTvShow(tvShowId)
@@ -156,7 +171,10 @@ class MovieRepository private constructor(
                     posterPath = data.posterPath
                 )
 
-                localDataSource.setDetailTvShow(tvShow)
+                if (codeNull == 1)
+                    localDataSource.insertTvShows(tvShow)
+                else if (codeNull == 2)
+                    localDataSource.setDetailTvShow(tvShow)
             }
         }.asLiveData()
     }

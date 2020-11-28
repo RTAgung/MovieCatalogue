@@ -1,5 +1,6 @@
 package com.example.moviecatalogue.utils
 
+import com.example.moviecatalogue.data.source.local.entity.FavoriteEntity
 import com.example.moviecatalogue.data.source.local.entity.MovieEntity
 import com.example.moviecatalogue.data.source.local.entity.TvShowEntity
 import com.example.moviecatalogue.data.source.remote.response.*
@@ -260,7 +261,7 @@ object DataDummy {
         return tvShows
     }
 
-    fun generateRemoteDummyTrendingMovie(): List<TopMovieResultsItem> {
+    fun generateRemoteDummyTopMovie(): List<TopMovieResultsItem> {
         val movies = ArrayList<TopMovieResultsItem>()
 
         movies.add(
@@ -397,7 +398,7 @@ object DataDummy {
         return movies
     }
 
-    fun generateRemoteDummyTrendingTvShow(): List<TopTvShowResultsItem> {
+    fun generateRemoteDummyTopTvShow(): List<TopTvShowResultsItem> {
         val tvShows = ArrayList<TopTvShowResultsItem>()
 
         tvShows.add(
@@ -576,5 +577,62 @@ object DataDummy {
             numberOfSeasons = 2,
             genres = listGenres
         )
+    }
+
+    fun generateDummyFavorite(): List<FavoriteEntity> {
+        val favorite = ArrayList<FavoriteEntity>()
+
+        favorite.add(
+            FavoriteEntity(
+                id = "740985",
+                title = "Borat Subsequent Moviefilm",
+                releaseDate = "2020-10-23",
+                originalTitle = "Borat Subsequent Moviefilm",
+                posterPath = "/6agKYU5IQFpuDyUYPu39w7UCRrJ.jpg",
+                type = "Movie"
+            )
+        )
+        favorite.add(
+            FavoriteEntity(
+                id = "590223",
+                title = "Love and Monsters",
+                releaseDate = "2020-10-16",
+                originalTitle = "Love and Monsters",
+                posterPath = "/r4Lm1XKP0VsTgHX4LG4syAwYA2I.jpg",
+                type = "Movie"
+            )
+        )
+        favorite.add(
+            FavoriteEntity(
+                originalTitle = "The Haunting of Bly Manor",
+                id = "109958",
+                title = "The Haunting of Bly Manor",
+                releaseDate = "2020-10-09",
+                posterPath = "/vIXQ8UymmQ7zJEPrKJP3s3fSbhR.jpg",
+                type = "TV Show"
+            )
+        )
+        favorite.add(
+            FavoriteEntity(
+                originalTitle = "Helstrom",
+                id = "88987",
+                title = "Helstrom",
+                releaseDate = "2020-10-16",
+                posterPath = "/8fPIcaRIZgsoBcgA5yAm3GNz61M.jpg",
+                type = "TV Show"
+            )
+        )
+        favorite.add(
+            FavoriteEntity(
+                id = "625568",
+                title = "Unhinged",
+                releaseDate = "2020-07-02",
+                originalTitle = "Unhinged",
+                posterPath = "/6WC3cIhuaLZSq3SbtdOp2ZTSTe.jpg",
+                type = "Movie"
+            )
+        )
+
+        return favorite
     }
 }
