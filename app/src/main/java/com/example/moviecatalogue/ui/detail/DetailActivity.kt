@@ -2,7 +2,6 @@ package com.example.moviecatalogue.ui.detail
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -52,7 +51,10 @@ class DetailActivity : AppCompatActivity() {
                 viewModel.movie.observe(this, { movie ->
                     if (movie != null) {
                         when (movie.status) {
-                            Status.LOADING -> progress_bar_detail.visibility = View.VISIBLE
+                            Status.LOADING -> {
+                                progress_bar_detail.visibility = View.VISIBLE
+                                isLoading = true
+                            }
                             Status.SUCCESS -> {
                                 progress_bar_detail.visibility = View.GONE
                                 isLoading = false
@@ -75,7 +77,10 @@ class DetailActivity : AppCompatActivity() {
                 viewModel.tvShow.observe(this, { tvShow ->
                     if (tvShow != null) {
                         when (tvShow.status) {
-                            Status.LOADING -> progress_bar_detail.visibility = View.VISIBLE
+                            Status.LOADING -> {
+                                progress_bar_detail.visibility = View.VISIBLE
+                                isLoading = true
+                            }
                             Status.SUCCESS -> {
                                 progress_bar_detail.visibility = View.GONE
                                 isLoading = false
