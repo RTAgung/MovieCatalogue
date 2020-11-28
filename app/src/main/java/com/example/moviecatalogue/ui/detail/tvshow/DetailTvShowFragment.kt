@@ -35,41 +35,6 @@ class DetailTvShowFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         if (activity != null) {
             populateTvShow(tvShow)
-
-//            progress =
-//                (context as DetailActivity).findViewById(R.id.progress_bar_detail)
-//
-//            if (arguments != null) {
-//                val id = arguments?.getString(EXTRA_ID).toString()
-//
-//                val factory = ViewModelFactory.getInstance(requireActivity())
-//                val viewModel = ViewModelProvider(
-//                    this,
-//                    factory
-//                )[DetailTvShowViewModel::class.java]
-//
-//                viewModel.setTvShowId(id)
-//
-//                viewModel.tvShow.observe(this, { tvShow ->
-//                    if (tvShow != null) {
-//                        when (tvShow.status) {
-//                            Status.LOADING -> progress.visibility = View.VISIBLE
-//                            Status.SUCCESS -> if (tvShow.data != null) {
-//                                progress.visibility = View.GONE
-//                                populateTvShow(tvShow.data)
-//                            }
-//                            Status.ERROR -> {
-//                                progress.visibility = View.GONE
-//                                Toast.makeText(
-//                                    context,
-//                                    resources.getString(R.string.error_message),
-//                                    Toast.LENGTH_LONG
-//                                ).show()
-//                            }
-//                        }
-//                    }
-//                })
-//            }
         }
     }
 
@@ -134,9 +99,6 @@ class DetailTvShowFragment : Fragment() {
     companion object {
         fun getInstance(tvShow: TvShowEntity): DetailTvShowFragment {
             val detailTvShowFragment = DetailTvShowFragment()
-//            val bundle = Bundle()
-//            bundle.putString(EXTRA_ID, id)
-//            detailTvShowFragment.arguments = bundle
             detailTvShowFragment.tvShow = tvShow
 
             return detailTvShowFragment

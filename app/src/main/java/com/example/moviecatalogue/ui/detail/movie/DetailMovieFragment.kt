@@ -36,41 +36,6 @@ class DetailMovieFragment() : Fragment() {
         super.onActivityCreated(savedInstanceState)
         if (activity != null) {
             populateMovie(movie)
-
-//            progress =
-//                (context as DetailActivity).findViewById(R.id.progress_bar_detail)
-//
-//            if (arguments != null) {
-//                val id = arguments?.getString(EXTRA_ID).toString()
-//
-//                val factory = ViewModelFactory.getInstance(requireActivity())
-//                val viewModel = ViewModelProvider(
-//                    this,
-//                    factory
-//                )[DetailMovieViewModel::class.java]
-//
-//                viewModel.setMovieId(id)
-//
-//                viewModel.movie.observe(this, { movie ->
-//                    if (movie != null) {
-//                        when (movie.status) {
-//                            Status.LOADING -> progress.visibility = View.VISIBLE
-//                            Status.SUCCESS -> if (movie.data != null) {
-//                                progress.visibility = View.GONE
-//                                populateMovie(movie.data)
-//                            }
-//                            Status.ERROR -> {
-//                                progress.visibility = View.GONE
-//                                Toast.makeText(
-//                                    context,
-//                                    resources.getString(R.string.error_message),
-//                                    Toast.LENGTH_LONG
-//                                ).show()
-//                            }
-//                        }
-//                    }
-//                })
-//            }
         }
     }
 
@@ -121,9 +86,6 @@ class DetailMovieFragment() : Fragment() {
     companion object {
         fun getInstance(movie: MovieEntity): DetailMovieFragment {
             val detailMovieFragment = DetailMovieFragment()
-//            val bundle = Bundle()
-//            bundle.putString(EXTRA_ID, id)
-//            detailMovieFragment.arguments = bundle
             detailMovieFragment.movie = movie
 
             return detailMovieFragment
