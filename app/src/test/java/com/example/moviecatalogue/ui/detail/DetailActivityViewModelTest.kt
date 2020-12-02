@@ -9,12 +9,16 @@ import com.example.moviecatalogue.data.source.local.entity.TvShowEntity
 import com.example.moviecatalogue.utils.DataDummy
 import com.example.moviecatalogue.vo.Resource
 import com.nhaarman.mockitokotlin2.verify
+import junit.framework.Assert.assertEquals
+import junit.framework.Assert.assertNotNull
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.mockito.InjectMocks
 import org.mockito.Mock
 import org.mockito.Mockito.`when`
+import org.mockito.MockitoAnnotations
 import org.mockito.junit.MockitoJUnitRunner
 
 @RunWith(MockitoJUnitRunner::class)
@@ -40,6 +44,7 @@ class DetailActivityViewModelTest {
 
     @Before
     fun setUp() {
+        MockitoAnnotations.initMocks(this);
         viewModel = DetailActivityViewModel(movieRepository)
     }
 
@@ -78,7 +83,8 @@ class DetailActivityViewModelTest {
         movie.value = dummyMovie
 
         `when`(movieRepository.getMovie(dummyMovieId)).thenReturn(movie)
-//        val movieEntity = viewModel.movie.value?.data
+        val movieEntity = viewModel.movie.value?.data
+//        print(movieEntity)
 //        verify(movieRepository).getMovie(dummyMovieId)
 //        assertNotNull(movieEntity)
 //        assertEquals(dummyMovieEntity.id, movieEntity?.id)

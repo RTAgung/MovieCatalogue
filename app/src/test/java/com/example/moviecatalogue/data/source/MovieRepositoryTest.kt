@@ -16,11 +16,15 @@ import com.example.moviecatalogue.utils.PagedListUtil
 import com.example.moviecatalogue.vo.Resource
 import com.nhaarman.mockitokotlin2.verify
 import org.junit.Assert.*
+import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import org.mockito.Mockito.`when`
-import org.mockito.Mockito.mock
+import org.junit.runner.RunWith
+import org.mockito.Mockito.*
+import org.mockito.MockitoAnnotations
+import org.mockito.junit.MockitoJUnitRunner
 
+@RunWith(MockitoJUnitRunner::class)
 class MovieRepositoryTest {
 
     private val remote = mock(RemoteDataSource::class.java)
@@ -41,6 +45,11 @@ class MovieRepositoryTest {
 
     @get:Rule
     var instantTaskExecutorRule = InstantTaskExecutorRule()
+
+    @Before
+    fun setUp() {
+        MockitoAnnotations.initMocks(this);
+    }
 
     @Test
     fun getTopMovie() {
@@ -113,10 +122,10 @@ class MovieRepositoryTest {
 
         val dummyEntity = MutableLiveData<MovieEntity>()
         dummyEntity.value = DataDummy.generateDummyMovie()[0]
-        `when`(local.getMovieById(movieId)).thenReturn(dummyEntity)
 
+        `when`(local.getMovieById(movieId)).thenReturn(dummyEntity)
         val movieEntity = LiveDataTestUtil.getValue(movieRepository.getMovie(movieId))
-        verify(local).getMovieById(movieId)
+        verify(remote).getMovie(movieId)
 
         assertNotNull(movieEntity.data)
         assertNotNull(movieEntity.data?.title)
@@ -151,9 +160,10 @@ class MovieRepositoryTest {
 
         val dummyEntity = MutableLiveData<TvShowEntity>()
         dummyEntity.value = DataDummy.generateDummyTvShow()[0]
-        `when`(local.getTvShowById(tvShowId)).thenReturn(dummyEntity)
 
+        `when`(local.getTvShowById(tvShowId)).thenReturn(dummyEntity)
         val tvShowEntity = LiveDataTestUtil.getValue(movieRepository.getTvShow(tvShowId))
+//        val tvShowEntity = movieRepository.getTvShow(tvShowId).value
         verify(local).getTvShowById(tvShowId)
 
         assertNotNull(tvShowEntity.data)
@@ -164,6 +174,8 @@ class MovieRepositoryTest {
         assertEquals(tvShowResponses.voteAverage, tvShowEntity.data?.voteAverage)
         assertEquals(tvShowResponses.voteCount, tvShowEntity.data?.voteCount)
         assertEquals(tvShowResponses.backdropPath, tvShowEntity.data?.backdropPath)
+
+
     }
 
     @Test

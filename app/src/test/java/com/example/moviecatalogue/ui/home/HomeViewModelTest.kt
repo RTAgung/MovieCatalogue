@@ -9,6 +9,7 @@ import com.example.moviecatalogue.data.source.local.entity.TvShowEntity
 import com.example.moviecatalogue.data.source.FakeMovieRepository
 import com.example.moviecatalogue.data.source.MovieRepository
 import com.example.moviecatalogue.data.source.local.entity.FavoriteEntity
+import com.example.moviecatalogue.utils.DataDummy
 import com.example.moviecatalogue.vo.Resource
 import com.nhaarman.mockitokotlin2.verify
 import org.junit.Assert.*
@@ -18,6 +19,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.Mockito.`when`
+import org.mockito.Mockito.mock
 import org.mockito.junit.MockitoJUnitRunner
 
 /*
@@ -40,9 +42,9 @@ Scenario HomeViewModelTest :
 class HomeViewModelTest {
     private lateinit var viewModel: HomeViewModel
 
-//    private val dummyFirstMovie = DataDummy.generateDummyMovie()[0]
-//    private val dummyFirstTvShow = DataDummy.generateDummyTvShow()[0]
-//    private val dummyFirstFavorite = DataDummy.generateDummyFavorite()[0]
+    private val dummyFirstMovie = DataDummy.generateDummyMovie()[0]
+    private val dummyFirstTvShow = DataDummy.generateDummyTvShow()[0]
+    private val dummyFirstFavorite = DataDummy.generateDummyFavorite()[0]
 
     private val dummyMovieSize = 20
     private val dummyTvShowSize = 20
@@ -95,6 +97,7 @@ class HomeViewModelTest {
 
         val dummyMovies = Resource.success(pagedListMovie)
         `when`(dummyMovies.data?.size).thenReturn(dummyMovieSize)
+        `when`(dummyMovies.data?.get(0)).thenReturn(dummyFirstMovie)
         val movies = MutableLiveData<Resource<PagedList<MovieEntity>>>()
         movies.value = dummyMovies
 
@@ -102,7 +105,7 @@ class HomeViewModelTest {
         val movieEntities = viewModel.getTopMovies().value?.data
         verify(movieRepository).getTopMovies()
         assertNotNull(movieEntities)
-//        assertEquals(dummyFirstMovie, movieEntities?.get(0))
+        assertEquals(dummyFirstMovie, movieEntities?.get(0))
         assertEquals(dummyMovieSize, movieEntities?.size)
 
         viewModel.getTopMovies().observeForever(movieEntityObserver)
@@ -127,6 +130,7 @@ class HomeViewModelTest {
 
         val dummyTvShows = Resource.success(pagedListTvShow)
         `when`(dummyTvShows.data?.size).thenReturn(dummyTvShowSize)
+        `when`(dummyTvShows.data?.get(0)).thenReturn(dummyFirstTvShow)
         val tvShows = MutableLiveData<Resource<PagedList<TvShowEntity>>>()
         tvShows.value = dummyTvShows
 
@@ -134,6 +138,7 @@ class HomeViewModelTest {
         val tvShowEntities = viewModel.getTopTvShows().value?.data
         verify(movieRepository).getTopTvShows()
         assertNotNull(tvShowEntities)
+        assertEquals(dummyFirstTvShow, tvShowEntities?.get(0))
         assertEquals(dummyTvShowSize, tvShowEntities?.size)
 
         viewModel.getTopTvShows().observeForever(tvShowEntityObserver)
@@ -144,6 +149,7 @@ class HomeViewModelTest {
     fun getFavorite() {
         val dummyFavorites = pagedListFavorite
         `when`(dummyFavorites.size).thenReturn(dummyFavoriteSize)
+        `when`(dummyFavorites[0]).thenReturn(dummyFirstFavorite)
         val favorites = MutableLiveData<PagedList<FavoriteEntity>>()
         favorites.value = dummyFavorites
 
@@ -151,6 +157,7 @@ class HomeViewModelTest {
         val favoriteEntities = viewModel.getFavorites().value
         verify(movieRepository).getFavorites()
         assertNotNull(favoriteEntities)
+        assertEquals(dummyFirstFavorite, favoriteEntities?.get(0))
         assertEquals(dummyFavoriteSize, favoriteEntities?.size)
 
         viewModel.getFavorites().observeForever(favoriteEntityObserver)
