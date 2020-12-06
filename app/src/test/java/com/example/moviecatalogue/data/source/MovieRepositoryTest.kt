@@ -26,7 +26,7 @@ import org.mockito.Mockito.*
 import org.mockito.MockitoAnnotations
 import org.mockito.junit.MockitoJUnitRunner
 
-@RunWith(MockitoJUnitRunner::class)
+@RunWith(MockitoJUnitRunner.Silent::class)
 class MovieRepositoryTest {
 
     private val remote = mock(RemoteDataSource::class.java)
@@ -55,16 +55,6 @@ class MovieRepositoryTest {
 
     @Test
     fun getTopMovie() {
-//        doAnswer { invocation ->
-//            (invocation.arguments[0] as CallbackApiListener<List<TrendingMovieResultsItem>>)
-//                .onSuccess(trendingMovieResponses)
-//            null
-//        }.`when`(remote).getTopMovies(any())
-//        val movies = LiveDataTestUtil.getValue(movieRepository.getTopMovies())
-//        verify(remote).getTopMovies(any())
-//        assertNotNull(movies)
-//        assertEquals(trendingMovieResponses.size.toLong(), movies.size.toLong())
-
         val dataSourceFactory =
             mock(DataSource.Factory::class.java) as DataSource.Factory<Int, MovieEntity>
         `when`(local.getTopMovies()).thenReturn(dataSourceFactory)
@@ -79,16 +69,6 @@ class MovieRepositoryTest {
 
     @Test
     fun getTopTvShow() {
-//        doAnswer { invocation ->
-//            (invocation.arguments[0] as CallbackApiListener<List<TrendingTvShowResultsItem>>)
-//                .onSuccess(topTvShowResponses)
-//            null
-//        }.`when`(remote).getTopTvShows(any())
-//        val tvShows = LiveDataTestUtil.getValue(movieRepository.getTopTvShows())
-//        verify(remote).getTopTvShows(any())
-//        assertNotNull(tvShows)
-//        assertEquals(topTvShowResponses.size.toLong(), tvShows.size.toLong())
-
         val dataSourceFactory =
             mock(DataSource.Factory::class.java) as DataSource.Factory<Int, TvShowEntity>
         `when`(local.getTopTvShows()).thenReturn(dataSourceFactory)
@@ -103,32 +83,14 @@ class MovieRepositoryTest {
 
     @Test
     fun getMovie() {
-//        doAnswer { invocation ->
-//            (invocation.arguments[1] as CallbackApiListener<MovieResponse>)
-//                .onSuccess(movieResponses)
-//            null
-//        }.`when`(remote).getMovie(eq(movieId), any())
-//
-//        val movie =
-//            LiveDataTestUtil.getValue(movieRepository.getMovie(movieId))
-//
-//        verify(remote).getMovie(eq(movieId), any())
-//
-//        assertNotNull(movie)
-//        assertEquals(movieResponses.id, movie.id)
-//        assertEquals(movieResponses.title, movie.title)
-//        assertEquals(movieResponses.originalTitle, movie.originalTitle)
-//        assertEquals(movieResponses.voteAverage, movie.voteAverage)
-//        assertEquals(movieResponses.voteCount, movie.voteCount)
-//        assertEquals(movieResponses.backdropPath, movie.backdropPath)
+        val dummyEntity = MutableLiveData<ApiResponse<MovieResponse>>()
+        dummyEntity.value = ApiResponse.success(DataDummy.generateRemoteDummyMovie())
 
-        val dummyEntity = MutableLiveData<MovieEntity>()
-        dummyEntity.value = DataDummy.generateDummyMovie()[0]
-
-        `when`(local.getMovieById(movieId)).thenReturn(dummyEntity)
+        `when`(remote.getMovie(movieId)).thenReturn(dummyEntity)
         val movieEntity = LiveDataTestUtil.getValue(movieRepository.getMovie(movieId))
-        verify(local).getMovieById(movieId)
+        verify(remote).getMovie(movieId)
 
+        print(movieEntity.data)
         assertNotNull(movieEntity.data)
         assertNotNull(movieEntity.data?.title)
         assertEquals(movieResponses.id, movieEntity.data?.id)
@@ -141,31 +103,11 @@ class MovieRepositoryTest {
 
     @Test
     fun getTvShow() {
-//        doAnswer { invocation ->
-//            (invocation.arguments[1] as CallbackApiListener<TvShowResponse>)
-//                .onSuccess(tvShowResponses)
-//            null
-//        }.`when`(remote).getTvShow(eq(tvShowId), any())
-//
-//        val tvShow =
-//            LiveDataTestUtil.getValue(movieRepository.getTvShow(tvShowId))
-//
-//        verify(remote).getTvShow(eq(tvShowId), any())
-//
-//        assertNotNull(tvShow)
-//        assertEquals(tvShowResponses.id, tvShow.id)
-//        assertEquals(tvShowResponses.name, tvShow.name)
-//        assertEquals(tvShowResponses.originalName, tvShow.originalName)
-//        assertEquals(tvShowResponses.voteAverage, tvShow.voteAverage)
-//        assertEquals(tvShowResponses.voteCount, tvShow.voteCount)
-//        assertEquals(tvShowResponses.backdropPath, tvShow.backdropPath)
-
         val dummyEntity = MutableLiveData<ApiResponse<TvShowResponse>>()
         dummyEntity.value = ApiResponse.success(DataDummy.generateRemoteDummyTvShow())
 
         `when`(remote.getTvShow(tvShowId)).thenReturn(dummyEntity)
         val tvShowEntity = LiveDataTestUtil.getValue(movieRepository.getTvShow(tvShowId))
-//        val tvShowEntity = movieRepository.getTvShow(tvShowId).value
         verify(remote).getTvShow(tvShowId)
 
         assertNotNull(tvShowEntity.data)
@@ -176,8 +118,6 @@ class MovieRepositoryTest {
         assertEquals(tvShowResponses.voteAverage, tvShowEntity.data?.voteAverage)
         assertEquals(tvShowResponses.voteCount, tvShowEntity.data?.voteCount)
         assertEquals(tvShowResponses.backdropPath, tvShowEntity.data?.backdropPath)
-
-
     }
 
     @Test

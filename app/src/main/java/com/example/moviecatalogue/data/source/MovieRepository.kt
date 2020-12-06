@@ -2,6 +2,7 @@ package com.example.moviecatalogue.data.source
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
 import com.example.moviecatalogue.data.NetworkBoundResource
@@ -102,9 +103,9 @@ class MovieRepository private constructor(
     override fun getMovie(movieId: String): LiveData<Resource<MovieEntity>> {
         val result = MediatorLiveData<Resource<MovieEntity>>()
         val apiResponse = remoteDataSource.getMovie(movieId)
-        result.addSource(apiResponse){ response ->
+        result.addSource(apiResponse) { response ->
             result.value = Resource.loading(null)
-            when (response.status){
+            when (response.status) {
                 StatusResponse.SUCCESS -> {
                     val data = response.body
                     val movie = data?.id?.let {
@@ -139,9 +140,9 @@ class MovieRepository private constructor(
     override fun getTvShow(tvShowId: String): LiveData<Resource<TvShowEntity>> {
         val result = MediatorLiveData<Resource<TvShowEntity>>()
         val apiResponse = remoteDataSource.getTvShow(tvShowId)
-        result.addSource(apiResponse){ response ->
+        result.addSource(apiResponse) { response ->
             result.value = Resource.loading(null)
-            when (response.status){
+            when (response.status) {
                 StatusResponse.SUCCESS -> {
                     val data = response.body
                     val tvShow = data?.id?.let {

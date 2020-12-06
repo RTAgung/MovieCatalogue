@@ -83,7 +83,7 @@ class DetailActivityViewModelTest {
         movie.value = dummyMovie
 
         `when`(movieRepository.getMovie(dummyMovieId)).thenReturn(movie)
-        val movieEntity = viewModel.movie.value?.data
+//        val movieEntity = viewModel.movie.value?.data
 //        print(movieEntity)
 //        verify(movieRepository).getMovie(dummyMovieId)
 //        assertNotNull(movieEntity)

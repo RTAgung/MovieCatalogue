@@ -102,9 +102,9 @@ class FakeMovieRepository constructor(
     override fun getMovie(movieId: String): LiveData<Resource<MovieEntity>> {
         val result = MediatorLiveData<Resource<MovieEntity>>()
         val apiResponse = remoteDataSource.getMovie(movieId)
-        result.addSource(apiResponse){ response ->
+        result.addSource(apiResponse) { response ->
             result.value = Resource.loading(null)
-            when (response.status){
+            when (response?.status) {
                 StatusResponse.SUCCESS -> {
                     val data = response.body
                     val movie = data?.id?.let {
@@ -139,37 +139,39 @@ class FakeMovieRepository constructor(
     override fun getTvShow(tvShowId: String): LiveData<Resource<TvShowEntity>> {
         val result = MediatorLiveData<Resource<TvShowEntity>>()
         val apiResponse = remoteDataSource.getTvShow(tvShowId)
-        result.addSource(apiResponse){ response ->
-            result.value = Resource.loading(null)
-            when (response.status){
-                StatusResponse.SUCCESS -> {
-                    val data = response.body
-                    val tvShow = data?.id?.let {
-                        TvShowEntity(
-                            id = it,
-                            originalName = data.originalName,
-                            name = data.name,
-                            overview = data.overview,
-                            firstAirDate = data.firstAirDate,
-                            numberOfEpisodes = data.numberOfEpisodes,
-                            numberOfSeasons = data.numberOfSeasons,
-                            voteCount = data.voteCount,
-                            voteAverage = data.voteAverage,
-                            genres = getTvShowGenres(data.genres),
-                            backdropPath = data.backdropPath,
-                            posterPath = data.posterPath
-                        )
-                    }
-                    result.value = Resource.success(tvShow)
+//        result.addSource(apiResponse) { response ->
+        val response = apiResponse.value
+
+        result.value = Resource.loading(null)
+        when (response?.status) {
+            StatusResponse.SUCCESS -> {
+                val data = response.body
+                val tvShow = data?.id?.let {
+                    TvShowEntity(
+                        id = it,
+                        originalName = data.originalName,
+                        name = data.name,
+                        overview = data.overview,
+                        firstAirDate = data.firstAirDate,
+                        numberOfEpisodes = data.numberOfEpisodes,
+                        numberOfSeasons = data.numberOfSeasons,
+                        voteCount = data.voteCount,
+                        voteAverage = data.voteAverage,
+                        genres = getTvShowGenres(data.genres),
+                        backdropPath = data.backdropPath,
+                        posterPath = data.posterPath
+                    )
                 }
-                StatusResponse.EMPTY -> {
-                    result.value = Resource.success(null)
-                }
-                StatusResponse.ERROR -> {
-                    result.value = Resource.error(response.message, null)
-                }
+                result.value = Resource.success(tvShow)
+            }
+            StatusResponse.EMPTY -> {
+                result.value = Resource.success(null)
+            }
+            StatusResponse.ERROR -> {
+                result.value = Resource.error(response.message, null)
             }
         }
+//        }
         return result
     }
 
