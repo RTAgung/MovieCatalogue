@@ -1,6 +1,7 @@
 package com.example.moviecatalogue.data.source
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MediatorLiveData
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
 import com.example.moviecatalogue.data.NetworkBoundResource
@@ -10,6 +11,7 @@ import com.example.moviecatalogue.data.source.local.entity.MovieEntity
 import com.example.moviecatalogue.data.source.local.entity.TvShowEntity
 import com.example.moviecatalogue.data.source.remote.ApiResponse
 import com.example.moviecatalogue.data.source.remote.RemoteDataSource
+import com.example.moviecatalogue.data.source.remote.StatusResponse
 import com.example.moviecatalogue.data.source.remote.response.*
 import com.example.moviecatalogue.utils.AppExecutors
 import com.example.moviecatalogue.utils.Helper.getMovieGenres
@@ -98,85 +100,77 @@ class FakeMovieRepository constructor(
     }
 
     override fun getMovie(movieId: String): LiveData<Resource<MovieEntity>> {
-        var codeNull = 0
-        return object : NetworkBoundResource<MovieEntity, MovieResponse>(appExecutors) {
-            override fun loadFromDB(): LiveData<MovieEntity> =
-                localDataSource.getMovieById(movieId)
-
-            override fun shouldFetch(data: MovieEntity?): Boolean {
-                if (data == null)
-                    codeNull = 1
-                else if (data.genres == null || data.runtime == null)
-                    codeNull = 2
-                return data?.genres == null || data.runtime == null
+        val result = MediatorLiveData<Resource<MovieEntity>>()
+        val apiResponse = remoteDataSource.getMovie(movieId)
+        result.addSource(apiResponse){ response ->
+            result.value = Resource.loading(null)
+            when (response.status){
+                StatusResponse.SUCCESS -> {
+                    val data = response.body
+                    val movie = data?.id?.let {
+                        MovieEntity(
+                            id = it,
+                            originalTitle = data.originalTitle,
+                            title = data.title,
+                            overview = data.overview,
+                            releaseDate = data.releaseDate,
+                            runtime = data.runtime,
+                            voteCount = data.voteCount,
+                            voteAverage = data.voteAverage,
+                            tagline = data.tagline,
+                            genres = getMovieGenres(data.genres),
+                            backdropPath = data.backdropPath,
+                            posterPath = data.posterPath
+                        )
+                    }
+                    result.value = Resource.success(movie)
+                }
+                StatusResponse.EMPTY -> {
+                    result.value = Resource.success(null)
+                }
+                StatusResponse.ERROR -> {
+                    result.value = Resource.error(response.message, null)
+                }
             }
-
-            override fun createCall(): LiveData<ApiResponse<MovieResponse>> =
-                remoteDataSource.getMovie(movieId)
-
-            override fun saveCallResult(data: MovieResponse) {
-                val movie = MovieEntity(
-                    id = data.id,
-                    originalTitle = data.originalTitle,
-                    title = data.title,
-                    overview = data.overview,
-                    releaseDate = data.releaseDate,
-                    runtime = data.runtime,
-                    voteCount = data.voteCount,
-                    voteAverage = data.voteAverage,
-                    tagline = data.tagline,
-                    genres = getMovieGenres(data.genres),
-                    backdropPath = data.backdropPath,
-                    posterPath = data.posterPath
-                )
-
-                if (codeNull == 1)
-                    localDataSource.insertMovies(movie)
-                else if (codeNull == 2)
-                    localDataSource.setDetailMovie(movie)
-            }
-        }.asLiveData()
+        }
+        return result
     }
 
     override fun getTvShow(tvShowId: String): LiveData<Resource<TvShowEntity>> {
-        var codeNull = 0
-        return object : NetworkBoundResource<TvShowEntity, TvShowResponse>(appExecutors) {
-            override fun loadFromDB(): LiveData<TvShowEntity> =
-                localDataSource.getTvShowById(tvShowId)
-
-            override fun shouldFetch(data: TvShowEntity?): Boolean {
-                if (data == null)
-                    codeNull = 1
-                else if (data.genres == null || data.numberOfEpisodes == null)
-                    codeNull = 2
-                return data?.genres == null || data.numberOfEpisodes == null
+        val result = MediatorLiveData<Resource<TvShowEntity>>()
+        val apiResponse = remoteDataSource.getTvShow(tvShowId)
+        result.addSource(apiResponse){ response ->
+            result.value = Resource.loading(null)
+            when (response.status){
+                StatusResponse.SUCCESS -> {
+                    val data = response.body
+                    val tvShow = data?.id?.let {
+                        TvShowEntity(
+                            id = it,
+                            originalName = data.originalName,
+                            name = data.name,
+                            overview = data.overview,
+                            firstAirDate = data.firstAirDate,
+                            numberOfEpisodes = data.numberOfEpisodes,
+                            numberOfSeasons = data.numberOfSeasons,
+                            voteCount = data.voteCount,
+                            voteAverage = data.voteAverage,
+                            genres = getTvShowGenres(data.genres),
+                            backdropPath = data.backdropPath,
+                            posterPath = data.posterPath
+                        )
+                    }
+                    result.value = Resource.success(tvShow)
+                }
+                StatusResponse.EMPTY -> {
+                    result.value = Resource.success(null)
+                }
+                StatusResponse.ERROR -> {
+                    result.value = Resource.error(response.message, null)
+                }
             }
-
-            override fun createCall(): LiveData<ApiResponse<TvShowResponse>> =
-                remoteDataSource.getTvShow(tvShowId)
-
-            override fun saveCallResult(data: TvShowResponse) {
-                val tvShow = TvShowEntity(
-                    id = data.id,
-                    originalName = data.originalName,
-                    name = data.name,
-                    overview = data.overview,
-                    firstAirDate = data.firstAirDate,
-                    numberOfEpisodes = data.numberOfEpisodes,
-                    numberOfSeasons = data.numberOfSeasons,
-                    voteCount = data.voteCount,
-                    voteAverage = data.voteAverage,
-                    genres = getTvShowGenres(data.genres),
-                    backdropPath = data.backdropPath,
-                    posterPath = data.posterPath
-                )
-
-                if (codeNull == 1)
-                    localDataSource.insertTvShows(tvShow)
-                else if (codeNull == 2)
-                    localDataSource.setDetailTvShow(tvShow)
-            }
-        }.asLiveData()
+        }
+        return result
     }
 
     override fun getFavorites(): LiveData<PagedList<FavoriteEntity>> {

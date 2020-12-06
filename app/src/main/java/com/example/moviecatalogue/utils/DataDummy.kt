@@ -3,6 +3,7 @@ package com.example.moviecatalogue.utils
 import com.example.moviecatalogue.data.source.local.entity.FavoriteEntity
 import com.example.moviecatalogue.data.source.local.entity.MovieEntity
 import com.example.moviecatalogue.data.source.local.entity.TvShowEntity
+import com.example.moviecatalogue.data.source.remote.ApiResponse
 import com.example.moviecatalogue.data.source.remote.response.*
 
 object DataDummy {
@@ -534,6 +535,30 @@ object DataDummy {
 
         return tvShows
     }
+
+//    fun generateRemoteDummyMovie(): ApiResponse<MovieResponse> {
+//        val listGenres = ArrayList<MovieGenresItem>()
+//        listGenres.add(MovieGenresItem("Action", 1))
+//        listGenres.add(MovieGenresItem("Comedy", 2))
+//        listGenres.add(MovieGenresItem("Horror", 3))
+//
+//        val anu = MovieResponse(
+//            id = "575417",
+//            voteAverage = 6.5,
+//            voteCount = 33,
+//            title = "On the Rocks",
+//            releaseDate = "2020-10-02",
+//            originalTitle = "On the Rocks",
+//            backdropPath = "/7FQHLt4iNh2TZ58cAAYrZK0xogg.jpg",
+//            posterPath = "/fcijRCmB7yTtloh4Pumy9b1rkwU.jpg",
+//            overview = "Faced with sudden doubts about her marriage, a young New York mother teams up with her larger-than-life playboy father to tail her husband.",
+//            runtime = 90,
+//            tagline = "Faced with sudden doubts about her marriage",
+//            genres = listGenres
+//        )
+//
+//        return ApiResponse.success(anu)
+//    }
 
     fun generateRemoteDummyMovie(): MovieResponse {
         val listGenres = ArrayList<MovieGenresItem>()
