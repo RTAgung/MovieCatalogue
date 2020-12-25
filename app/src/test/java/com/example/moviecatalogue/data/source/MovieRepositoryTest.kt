@@ -110,6 +110,7 @@ class MovieRepositoryTest {
         val tvShowEntity = LiveDataTestUtil.getValue(movieRepository.getTvShow(tvShowId))
         verify(remote).getTvShow(tvShowId)
 
+        print(tvShowEntity.data)
         assertNotNull(tvShowEntity.data)
         assertNotNull(tvShowEntity.data?.name)
         assertEquals(tvShowResponses.id, tvShowEntity.data?.id)

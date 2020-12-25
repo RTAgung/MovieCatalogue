@@ -141,7 +141,6 @@ class FakeMovieRepository constructor(
         val apiResponse = remoteDataSource.getTvShow(tvShowId)
 //        result.addSource(apiResponse) { response ->
         val response = apiResponse.value
-
         result.value = Resource.loading(null)
         when (response?.status) {
             StatusResponse.SUCCESS -> {

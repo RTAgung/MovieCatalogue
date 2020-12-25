@@ -101,39 +101,40 @@ class MovieRepository private constructor(
     }
 
     override fun getMovie(movieId: String): LiveData<Resource<MovieEntity>> {
-        val result = MediatorLiveData<Resource<MovieEntity>>()
+        val result = MutableLiveData<Resource<MovieEntity>>()
         val apiResponse = remoteDataSource.getMovie(movieId)
-        result.addSource(apiResponse) { response ->
-            result.value = Resource.loading(null)
-            when (response.status) {
-                StatusResponse.SUCCESS -> {
-                    val data = response.body
-                    val movie = data?.id?.let {
-                        MovieEntity(
-                            id = it,
-                            originalTitle = data.originalTitle,
-                            title = data.title,
-                            overview = data.overview,
-                            releaseDate = data.releaseDate,
-                            runtime = data.runtime,
-                            voteCount = data.voteCount,
-                            voteAverage = data.voteAverage,
-                            tagline = data.tagline,
-                            genres = getMovieGenres(data.genres),
-                            backdropPath = data.backdropPath,
-                            posterPath = data.posterPath
-                        )
-                    }
-                    result.value = Resource.success(movie)
+//        result.addSource(apiResponse) { response ->
+        val response = apiResponse.value
+        result.value = Resource.loading(null)
+        when (response?.status) {
+            StatusResponse.SUCCESS -> {
+                val data = response.body
+                val movie = data?.id?.let {
+                    MovieEntity(
+                        id = it,
+                        originalTitle = data.originalTitle,
+                        title = data.title,
+                        overview = data.overview,
+                        releaseDate = data.releaseDate,
+                        runtime = data.runtime,
+                        voteCount = data.voteCount,
+                        voteAverage = data.voteAverage,
+                        tagline = data.tagline,
+                        genres = getMovieGenres(data.genres),
+                        backdropPath = data.backdropPath,
+                        posterPath = data.posterPath
+                    )
                 }
-                StatusResponse.EMPTY -> {
-                    result.value = Resource.success(null)
-                }
-                StatusResponse.ERROR -> {
-                    result.value = Resource.error(response.message, null)
-                }
+                result.value = Resource.success(movie)
+            }
+            StatusResponse.EMPTY -> {
+                result.value = Resource.success(null)
+            }
+            StatusResponse.ERROR -> {
+                result.value = Resource.error(response.message, null)
             }
         }
+//        }
         return result
     }
 
